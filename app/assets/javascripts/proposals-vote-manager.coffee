@@ -85,7 +85,7 @@ class App.ProposalsVoteManager
     budgetPercentage = 100*votedBudget/@budget_max
 
     # Update total amount
-    @$voteProgressAmount.html votedBudget.toLocaleString('en-EN')+' € <small>('+(budgetPercentage|0)+' %)</small>'
+    @$voteProgressAmount.html votedBudget.toLocaleString('en-EN')+' $ <small>('+(budgetPercentage|0)+' %)</small>'
 
     # Setup state for vote progress bar & vote finish btn
     if votedBudget > @budget_max

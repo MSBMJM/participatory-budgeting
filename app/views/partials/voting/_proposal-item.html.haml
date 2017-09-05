@@ -4,7 +4,7 @@
       .card-header.proposal-budget
         %strong
           = number_to_currency(proposal.budget, unit: '', precision: 2, format: "%n %u")
-        €
+        $
       - unless controller.action_name == 'show'
         %a.proposal-title{ href: voting_proposal_path(proposal.id), title: proposal.title }
           %h3

@@ -23,3 +23,6 @@ vendor/assets/javascripts/d3-bundle.js
 
 # Ignore environment
 .env
+
+#RubyMine
+.idea

@@ -80,9 +80,9 @@ ActiveRecord::Schema.define(version: 20170515201248) do
   end
 
   create_table "voter_secrets", force: :cascade do |t|
-    t.hstore   "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.hstore   "data",       default: {}, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.index ["data"], name: "index_voter_secrets_on_data", using: :gin
   end
 
