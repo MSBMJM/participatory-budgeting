@@ -16,7 +16,7 @@
           %p.process-state-title
             = _('Process announcement')
           %p.process-state-description
-            = @campaign.description
+            = _('All citizens of the Constituency are invited to consider proposals and make recommendations on how the Constituency Development Fund  should be used for the new financial year.') #@campaign.description
     .col-md-4
       .card.process-state{ class: ('active' if @campaign.open?) }
         .card-block
@@ -25,7 +25,7 @@
           %p.process-state-title
             = _('Process voting')
           %p.process-state-description
-            = _('You can choose as many proposals as you want, as long as all the available budget is not allocated.')
+            = _('You can choose as many proposals as you want, as long as all the available budget is not allocated.')#_('You can choose as many proposals as you want, as long as all the available budget is not allocated.')
           - if @campaign.open?
             %a.btn.btn-primary.btn-lg.btn-block{href: voting_proposals_path}
               = _('Start voting')
@@ -37,7 +37,7 @@
           %p.process-state-title
             = _('Process result')
           %p.process-state-description
-            = _('The participatory process is finished and the proposals are voted. You can now monitor the progress of the chosen proposals.')
+            = _('The participatory selection process is finished and the CDF proposals have been  voted on. You can now monitor the progress of the chosen proposals.') #_('The participatory process is finished and the proposals are voted. You can now monitor the progress of the chosen proposals.')
           - if @campaign.closed?
             %a.btn.btn-primary.btn-lg.btn-block{href: monitoring_proposals_path}
               = _('Start monitoring')
