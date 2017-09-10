@@ -5,8 +5,19 @@ class VotersController < ApplicationController
   end
 
   def create
+    ActionController::Parameters.permit_all_parameters = true
+
+    params = ActionController::Parameters.new
+    params.permitted? # => true
+
+    Rails.logger.debug("FearonTheOne")
+    Rails.logger.debug(params.permitted?)
+    Rails.logger.debug(params[:voter])
     email = voter_params[:email]
     secret = voter_secret_params[:secret_data].to_h
+    printf "logging Like a Logger\n"
+
+    # logger.info 'test'
     if RegisterVoter.call(email,secret)
       session[:verification_pending] = true
       redirect_to current_redirect!, notice: _("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions.")
@@ -50,8 +61,9 @@ class VotersController < ApplicationController
     params.require(:voter).permit(:email)
   end
 
+
   def voter_secret_params
     return ActionController::Parameters.new({}) unless (params[:voter] && params[:voter][:secret_data])
-    params.require(:voter).permit(secret_data: params[:voter][:secret_data].try(:keys))
+    params.require(:voter).permit(:email, secret_data: params[:voter][:secret_data].try(:keys))
   end
 end

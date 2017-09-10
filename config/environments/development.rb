@@ -27,7 +27,8 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
 
   config.action_mailer.perform_caching = false
 
@@ -53,5 +54,15 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # ActionMailer default URL options
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'openbudget.antoniofearon.com' } #{ host: 'openbudget.antoniofearon.com', 'localhost:3000' }
+
+  ApplicationMailer.smtp_settings = {
+      address:        'smtp.gmail.com',
+      port:           587, #465
+      authentication: :plain,
+      user_name:      'msbm.mobile@gmail.com',
+      password:       'M$bm_M0b1!3',
+      domain:         'gmail.com',
+      enable_starttls_auto: true #(ENV['MAILER_TLS'] == 'true')
+  }
 end
