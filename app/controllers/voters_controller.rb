@@ -20,7 +20,10 @@ class VotersController < ApplicationController
     # logger.info 'test'
     if RegisterVoter.call(email,secret)
       session[:verification_pending] = true
-      redirect_to current_redirect!, notice: _("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions.")
+      session[:user_to_verify] = email
+      @voter = Voter.find_or_create_by(email: email)
+      session[:voter_url] = verify_voters_url(token: @voter.verification_token)
+      redirect_to current_redirect!, notice: _("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
     else
       redirect_to new_voter_path, error: _('Something went wrong with the registration process. Please, <strong>try again</strong>.')
     end
