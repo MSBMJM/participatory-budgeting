@@ -3,12 +3,12 @@
     %p.credits
       = raw _("<a class='logo-open-budgets' href='http://openbudgets.eu/' target='_blank' title='OpenBudgets.eu'><img src='%{logo_openbudgets}' alt='OpenBudgets.eu'/></a> Adapted from Participatory Budgeting Tool developed by <a class='logo-civio' href='http://civio.es/' target='_blank' title='Civio'><img src='%{logo_civio}' alt='Civio'/></a>") % { logo_openbudgets: asset_path('img/COI-Logo-white-small.png'), logo_civio: asset_path('img/civio-logo-white.png') }
     %ul.nav.nav-inline
-      %li.nav-item
-        %a.nav-link.m-0.p-0{ href: terms_of_service_path() }
-          = _('Terms of service')
-      %li.nav-item
-        %a.nav-linkm-0.p-0{ href: privacy_policy_path() }
-          = _('Privacy policy')
+      -#%li.nav-item
+      -#  %a.nav-link.m-0.p-0{ href: terms_of_service_path() }
+      -#    = _('Terms of service')
+      -#%li.nav-item
+      -#  %a.nav-linkm-0.p-0{ href: privacy_policy_path() }
+      -#    = _('Privacy policy')
   .container
     %p.funding-credit
-      = raw _("Open Budget initiatives in the Caribbean supported by funding from the International Development Research Centre")
+      = raw _("Open Budget initiative in Jamaica is supported by funding from the Regional Fund for Digital Innovation in LAC (FRIDA)")#_("Open Budget initiatives in the Caribbean supported by funding from the International Development Research Centre")
