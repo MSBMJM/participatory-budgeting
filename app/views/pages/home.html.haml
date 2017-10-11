@@ -17,6 +17,9 @@
             = _('Process consultation') #_('Process announcement')
           %p.process-state-description
             = _('All citizens of the Constituency are invited to consider proposals and make recommendations on how the Constituency Development Fund  should be used for the new financial year.') #@campaign.description
+            - if @campaign.pending?
+              %a.btn.btn-primary.btn-lg.btn-block{href: suggestion_suggestions_path}
+                = _('Submit Proposal')
     .col-md-4
       .card.process-state{ class: ('active' if @campaign.open?) }
         .card-block

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515201248) do
+ActiveRecord::Schema.define(version: 20171011124030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20170515201248) do
     t.index ["classifier_id"], name: "index_classifiers_proposals_on_classifier_id", using: :btree
     t.index ["proposal_id", "classifier_id"], name: "index_classifiers_proposals_on_proposal_id_and_classifier_id", unique: true, using: :btree
     t.index ["proposal_id"], name: "index_classifiers_proposals_on_proposal_id", using: :btree
+  end
+
+  create_table "classifiers_suggestions", id: false, force: :cascade do |t|
+    t.integer "classifier_id"
+    t.integer "suggestion_id"
+    t.index ["classifier_id"], name: "index_classifiers_suggestions_on_classifier_id", using: :btree
+    t.index ["suggestion_id", "classifier_id"], name: "index_suggestion_id_and_classifier_id", unique: true, using: :btree
+    t.index ["suggestion_id"], name: "index_classifiers_suggestions_on_suggestion_id", using: :btree
   end
 
   create_table "comments", force: :cascade do |t|
@@ -79,6 +87,17 @@ ActiveRecord::Schema.define(version: 20170515201248) do
     t.index ["email"], name: "index_roles_on_email", unique: true, using: :btree
   end
 
+  create_table "suggestions", force: :cascade do |t|
+    t.string   "title",                                null: false
+    t.text     "description",                          null: false
+    t.decimal  "budget",      precision: 10, scale: 2
+    t.text     "image_data"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "campaign_id"
+    t.index ["campaign_id"], name: "index_suggestions_on_campaign_id", using: :btree
+  end
+
   create_table "voter_secrets", force: :cascade do |t|
     t.hstore   "data",       default: {}, null: false
     t.datetime "created_at",              null: false
@@ -99,10 +118,13 @@ ActiveRecord::Schema.define(version: 20170515201248) do
 
   add_foreign_key "classifiers_proposals", "classifiers"
   add_foreign_key "classifiers_proposals", "proposals"
+  add_foreign_key "classifiers_suggestions", "classifiers"
+  add_foreign_key "classifiers_suggestions", "suggestions"
   add_foreign_key "comments", "comments"
   add_foreign_key "comments", "proposals"
   add_foreign_key "comments", "voters"
   add_foreign_key "proposals", "campaigns"
   add_foreign_key "proposals_voters", "proposals"
   add_foreign_key "proposals_voters", "voters"
+  add_foreign_key "suggestions", "campaigns"
 end

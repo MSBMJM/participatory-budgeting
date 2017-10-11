@@ -1,0 +1,9 @@
+.row
+  .col-lg-9
+    %a.vote-btn.btn.btn-lg.btn-block{ href: edit_suggestion_suggestion_path(suggestion), title: _('Edit') }
+      %p.unvoted
+        = _('Edit')
+  .col-lg-3
+    %a.unvote-btn.btn.btn-lg.btn-block{ href: suggestion_suggestions_path(suggestion), title: _('Delete'), data: { method: :delete, confirm: _('Are you sure?') } }
+      %p.unvoted
+        = _('Delete')

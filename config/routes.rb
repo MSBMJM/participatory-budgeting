@@ -26,6 +26,12 @@ Rails.application.routes.draw do
     root 'proposals#index'
   end
 
+  namespace 'suggestion' do
+    resources :suggestions
+
+    root 'suggestions#new'
+  end
+
   resources :voters, only: [:new, :create, :update] do
     collection do
       get 'verification', to: 'voters#verify', as: :verify
