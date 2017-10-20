@@ -1,4 +1,5 @@
 class Admin::ProposalsController < AdminController
+  # skip_before_action :set_proposal, only: [:suggestion], raise: false
   before_action :set_proposal, only: [:show, :edit, :update, :destroy]
   before_action :set_classifiers, only: [:new, :edit]
 
@@ -40,6 +41,14 @@ class Admin::ProposalsController < AdminController
     @proposal.destroy
     redirect_to admin_proposals_url, success: _('Proposal was successfully destroyed.')
   end
+
+  def suggestion
+    @suggestions = Suggestion.all.order(updated_at: :desc)
+  end
+
+  # def campaign
+  #   @campaigns = Campaign.all.order(updated_at: :desc)
+  # end
 
   private
 

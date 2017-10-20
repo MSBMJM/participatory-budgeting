@@ -1,0 +1,31 @@
+.card
+  .card-block.row
+    .col-lg-12
+      .card-header.proposal-budget
+        %strong
+          = number_to_currency(campaign.budget, unit: '', precision: 2, format: "%n %u")
+        $
+      - unless controller.action_name == 'show'
+        %a.proposal-title{ href: suggestion_suggestion_path(campaign.id), title: campaign.title }
+          %h3
+            = campaign.title
+      - else
+        .proposal-title
+          %h3
+            = campaign.title
+      -#- if suggestion.image.present?
+      -#  = image_tag suggestion.image_url, class: 'proposal-image'
+      - unless campaign.description.blank?
+        - if controller.action_name == 'show'
+          %p.proposal-description
+            = campaign.description
+        - else
+          %p.proposal-description
+            = truncate(campaign.description, length: 230, separator: ' ')
+      -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Votes') }
+      -#  = _('Votes: %{votes}') % { votes: " " }
+      %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
+        = _('%{active}') % if campaign.active then {active: 'Active'} else {active: 'Inactive'} end
+      -#= render 'partials/proposal-classifiers-list', classifiers: campaign.classifiers
+    .col-lg-12
+      = render 'partials/admin/campaign-edit-btn', campaign: campaign

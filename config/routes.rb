@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   namespace 'admin' do
     resources :proposals
 
-    root 'proposals#index'
+    match '/suggestions', to: 'proposals#suggestion', via: 'get'
+    match '/campaigns', to: 'proposals#campaign', via: 'get'
+
+    resources :campaign
+    match '/campaigns', to: 'campaign#create', via: 'post'
+
+        root 'proposals#index'
   end
 
   namespace 'voting' do

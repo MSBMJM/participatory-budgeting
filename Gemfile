@@ -15,6 +15,7 @@ gem 'date_validator', '0.9.0'
 gem 'shrine', '2.6.1'
 gem 'translation', '1.9'
 gem 'rake', '12.0.0'
+gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   gem 'byebug', '9.0.6', platform: :mri

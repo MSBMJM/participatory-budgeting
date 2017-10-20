@@ -57,6 +57,20 @@
     text-transform: uppercase;
   }
 
+  #view-suggestions{
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.03rem;
+    text-transform: uppercase;
+  }
+
+  #view-campaign{
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.03rem;
+    text-transform: uppercase;
+  }
+
   @include media-breakpoint-up(md) {
 
     .vote-progress{
