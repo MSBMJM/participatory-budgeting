@@ -46,7 +46,7 @@ class Admin::CampaignController < AdminController
   end
 
   def campaign_params
-    p = params.require(:campaign).permit(:title, :description, :budget, :start_date, :end_date)
+    p = params.require(:campaign).permit(:title, :description, :active, :budget, :start_date, :end_date)
     p[:budget] = p[:budget]&.gsub(',', '_')&.to_d if p[:budget]
     # p[:image] = nil if params[:delete_image]
     p
