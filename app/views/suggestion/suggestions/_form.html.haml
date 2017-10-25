@@ -7,9 +7,9 @@
       .card
         .card-block
           = form_for [:suggestion, @suggestion], class: 'voters-new' do |f|
-            .form-group
-              %h5= _('Campaign')
-              = f.collection_select :campaign_id, Campaign.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
+            -#.form-group
+            -#  %h5= _('Campaign')
+            -#  = f.collection_select :campaign_id, Campaign.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
             .form-group
               %h5= _('Proposal')
               = f.label _('Title')
@@ -31,7 +31,7 @@
                   %p
                     = render 'partials/icons/location'
                     %strong
-                      = _('District')
+                      = _('Constituency')
                   = f.collection_select :district_id, @districts, :id, :name, {}, { class: 'form-control' }
                 .col-lg-4
                   %p

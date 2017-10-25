@@ -14,7 +14,7 @@
       %p
         = render 'partials/icons/location'
         %strong
-          = _('District')
+          = _('Constituency')
       %select.form-control{ id: 'classifier-district', name: 'district' }
         %option{ value: @districts.map(&:id).join(',') }
           = _('All districts')
