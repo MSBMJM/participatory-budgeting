@@ -11,10 +11,16 @@ class Voting::ProposalsController < ApplicationController
     @proposals = Campaign.current.proposals.includes(:classifiers)
     @budget_max = @proposals.max_by(&:budget)&.budget&.ceil || 0
 
+    Rails.logger.debug("===========")
+    # Rails.logger.debug(@proposals)
+    Rails.logger.debug(classifiers_filter)
+    Rails.logger.debug("===========")
+    # printf "TEST"
     @proposals = @proposals.with_class(*classifiers_filter) unless classifiers_filter.blank?
     @proposals = @proposals.budget_min(budget_min_filter)   unless budget_min_filter.blank?
     @proposals = @proposals.budget_max(budget_max_filter)   unless budget_max_filter.blank?
     @proposals = @proposals.shuffle
+    # @proposals
 
     classifiers = @proposals.flat_map(&:classifiers).uniq
     @districts = classifiers.select{ |_| _.is_a?(District) }

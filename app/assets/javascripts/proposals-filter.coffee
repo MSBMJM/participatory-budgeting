@@ -55,6 +55,8 @@ class App.ProposalsFilter
         classifiers = classifiers+','+ $(this).val()
       else
         all_classifiers = false
+    console.log(classifiers)
+    console.log(all_classifiers)
 
     # Send ajax petition to proposals filter
     $.ajax(
