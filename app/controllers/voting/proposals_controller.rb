@@ -22,7 +22,61 @@ class Voting::ProposalsController < ApplicationController
     @proposals = @proposals.shuffle
     # @proposals
 
+    @caught_classifiers = Proposal.where(id: classifiers_filter)
+
+    Rails.logger.debug(@caught_classifiers.size)
+
     classifiers = @proposals.flat_map(&:classifiers).uniq
+    Rails.logger.debug("=====Returned Classifiers======")
+    Rails.logger.debug(classifiers)
+    Rails.logger.debug("===============================")
+
+    # base = joins(:classifiers).where(classifiers: { id: classifiers_filter })
+    # with_districts = base.where(classifiers: { type: 'District' })
+
+    # Rails.logger.debug("===== District Catch =====")
+    # Rails.logger.debug(with_districts)
+    # Rails.logger.debug("===========")
+
+    # Rails.logger.debug(classifiers.size)
+    Rails.logger.debug("<Proposal Size>")
+    Rails.logger.debug(@proposals.size)
+    bad_proposals ||= []
+    count = 1
+    @proposals.each do |prop|
+      printf "count: "
+      Rails.logger.debug(count)
+      Rails.logger.debug("<===========>")
+      Rails.logger.debug(prop.title)
+      # Rails.logger.debug(prop.tags.classifier_id)
+      if classifiers_filter.present?
+        Rails.logger.debug(classifiers_filter)
+        Rails.logger.debug(prop.classifier_ids)
+        # @bool = classifiers_filter == prop.classifier_ids ? "TRUE" : "FALSE"
+        # Rails.logger.debug(@bool)
+        @bool2 = (prop&.classifier_ids & classifiers_filter) == prop&.classifier_ids ? "TRUE" : "FALSE" #prop&.classifier_ids #(prop.classifier_ids - classifiers_filter).empty?
+        #check if proposals classifiers ids selected by query are a subset of the classifiers submitted by user
+        if !((prop&.classifier_ids & classifiers_filter) == prop&.classifier_ids)
+          # @proposals.delete(prop)
+          bad_proposals.push(prop)
+          Rails.logger.debug("Does Not belong!")
+        end
+        Rails.logger.debug(@bool2)
+
+        # Rails.logger.debug(prop&.classifiers)
+        Rails.logger.debug("<===========>")
+      end
+      count += 1
+    end
+    printf "bad size: "
+    Rails.logger.debug(bad_proposals.size)
+
+    # cleaned_proposals = @proposals - bad_proposals
+    @proposals = @proposals - bad_proposals
+
+    printf "Cleaned size: "
+    Rails.logger.debug(@proposals.size)
+
     @districts = classifiers.select{ |_| _.is_a?(District) }
     @areas = classifiers.select { |_| _.is_a?(Area) }
     @tags = classifiers.select { |_| _.is_a?(Tag) }
