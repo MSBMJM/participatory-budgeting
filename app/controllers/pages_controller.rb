@@ -14,6 +14,36 @@ class PagesController < ApplicationController
       # Rails.logger.debug("Verify After Point")
       # flash.now[:notice] = _('<strong>Verification pending</strong>, please see your inbox for further instructions.')
     end
-    @campaign = Campaign.current
+    if session[:current_campaign_id]
+      # @campaign = session[:current_campaign_id]
+      @campaign = Campaign.find(session[:current_campaign_id])
+      Rails.logger.debug("Camp Try")
+      Rails.logger.debug(@campaign)
+      Rails.logger.debug("========")
+      # Rails.logger.debug(@campaign)
+      # session.delete(:current_campaign)
+    else
+      @campaign = Campaign.current
+    end
+    # @campaign = Campaign.current
+  end
+
+  def constituency
+    @constituencies = Constituency.all.order(updated_at: :desc)
+  end
+
+  def constituency_campaign
+    # Rails.logger.debug("Camp Try")
+    # Rails.logger.debug(params.inspect)
+    # Rails.logger.debug(params[:id])
+    @constituency = Constituency.find(params[:id])
+    # Rails.logger.debug(@constituency.title)
+    @campaign = @constituency.current_campaign
+    # Rails.logger.debug(@campaign.title)
+    session[:current_campaign_id] = @campaign.id
+    # Rails.logger.debug(session[:current_campaign].title)
+    # session.delete(:current_campaign)
+    # Rails.logger.debug(session[:current_campaign].title)
+    redirect_to campaigns_path
   end
 end

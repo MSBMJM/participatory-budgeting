@@ -48,5 +48,10 @@ Rails.application.routes.draw do
   get '/terms-of-service', to: 'pages#terms_of_service'
   get '/privacy-policy',   to: 'pages#privacy_policy'
 
-  root 'pages#home'
+  get '/constituency',   to: 'pages#constituency'
+  get '/constituency-campaign/:id',   to: 'pages#constituency_campaign', as: 'constituency_campaign'
+
+  get 'campaigns', to: 'pages#home'
+  # root 'pages#home'
+  root 'pages#constituency'
 end

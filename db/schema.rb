@@ -10,21 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011124030) do
+ActiveRecord::Schema.define(version: 20171121113210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
   create_table "campaigns", force: :cascade do |t|
-    t.string   "title",                                                null: false
-    t.text     "description",                                          null: false
-    t.decimal  "budget",      precision: 10, scale: 2,                 null: false
-    t.date     "start_date",                                           null: false
-    t.date     "end_date",                                             null: false
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
-    t.boolean  "active",                               default: false, null: false
+    t.string   "title",                                                    null: false
+    t.text     "description",                                              null: false
+    t.decimal  "budget",          precision: 10, scale: 2,                 null: false
+    t.date     "start_date",                                               null: false
+    t.date     "end_date",                                                 null: false
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.boolean  "active",                                   default: false, null: false
+    t.integer  "constituency_id"
+    t.index ["constituency_id"], name: "index_campaigns_on_constituency_id", using: :btree
   end
 
   create_table "classifiers", force: :cascade do |t|
@@ -60,6 +62,14 @@ ActiveRecord::Schema.define(version: 20171011124030) do
     t.index ["comment_id"], name: "index_comments_on_comment_id", using: :btree
     t.index ["proposal_id"], name: "index_comments_on_proposal_id", using: :btree
     t.index ["voter_id"], name: "index_comments_on_voter_id", using: :btree
+  end
+
+  create_table "constituencies", force: :cascade do |t|
+    t.string   "title",                       null: false
+    t.text     "description",                 null: false
+    t.boolean  "active",      default: false, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "proposals", force: :cascade do |t|
@@ -116,6 +126,7 @@ ActiveRecord::Schema.define(version: 20171011124030) do
     t.index ["verification_token"], name: "index_voters_on_verification_token", unique: true, using: :btree
   end
 
+  add_foreign_key "campaigns", "constituencies"
   add_foreign_key "classifiers_proposals", "classifiers"
   add_foreign_key "classifiers_proposals", "proposals"
   add_foreign_key "classifiers_suggestions", "classifiers"
