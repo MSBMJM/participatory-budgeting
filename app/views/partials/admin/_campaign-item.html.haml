@@ -6,7 +6,7 @@
           = number_to_currency(campaign.budget, unit: '', precision: 2, format: "%n %u")
         $
       - unless controller.action_name == 'show'
-        %a.proposal-title{ href: suggestion_suggestion_path(campaign.id), title: campaign.title }
+        %a.proposal-title{ href: edit_admin_campaign_path(campaign), title: campaign.title }
           %h3
             = campaign.title
       - else
