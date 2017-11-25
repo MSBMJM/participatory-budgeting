@@ -50,13 +50,21 @@ class App.ProposalsFilter
     classifiers = $('#classifier-district').val()
     if classifiers.indexOf(',') == -1
       all_classifiers = false
+    present_classifiers = @$filterMenu.find('input.form-check-input').length
+    console.log('Filter Len: ', present_classifiers)
+    checked_count = 0
     @$filterMenu.find('input.form-check-input').each () ->
+      console.log('ID: ',$(this).val())
       if $(this).is(':checked')
         classifiers = classifiers+','+ $(this).val()
-      else
-        all_classifiers = false
-    console.log(classifiers)
-    console.log(all_classifiers)
+        checked_count += 1
+#      else
+#        all_classifiers = false
+    if present_classifiers isnt checked_count
+      all_classifiers = false
+    console.log('check Count: ', checked_count)
+    console.log('Classifiers',classifiers)
+    console.log('All classifiers',all_classifiers)
 
     # Send ajax petition to proposals filter
     $.ajax(
