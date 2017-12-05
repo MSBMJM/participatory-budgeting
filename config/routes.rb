@@ -8,6 +8,24 @@ Rails.application.routes.draw do
     resources :campaign
     match '/campaigns', to: 'campaign#create', via: 'post'
 
+    resources :constituency
+    match '/constituencies', to: 'constituency#create', via: 'post'
+
+    resources :classifier
+    match '/classifiers', to: 'classifier#create', via: 'post'
+    # routes to handle classifier children (tag, area, district)
+    match '/tag', to: 'classifier#edit', via: 'post'
+    match '/area', to: 'classifier#edit', via: 'post'
+    match '/district', to: 'classifier#edit', via: 'post'
+
+    match '/tag', to: 'classifier#update', via: 'put'
+    match '/area', to: 'classifier#update', via: 'put'
+    match '/district', to: 'classifier#update', via: 'put'
+    match '/tag', to: 'classifier#update', via: 'patch'
+    match '/area', to: 'classifier#update', via: 'patch'
+    match '/district', to: 'classifier#update', via: 'patch'
+
+
         root 'proposals#index'
   end
 

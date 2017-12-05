@@ -1,5 +1,0 @@
-class ConstituencyController < ApplicationController
-
-
-
-end

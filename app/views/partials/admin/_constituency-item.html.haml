@@ -1,0 +1,31 @@
+.card
+  .card-block.row
+    .col-lg-12
+      .card-header.proposal-budget
+        -#%strong
+        -#  = number_to_currency("constituency.budget", unit: '', precision: 2, format: "%n %u")
+        -#$
+      - unless controller.action_name == 'show'
+        %a.proposal-title{ href: edit_admin_constituency_path(constituency), title: constituency.title }
+          %h3
+            = constituency.title
+      - else
+        .proposal-title
+          %h3
+            = constituency.title
+      -#- if suggestion.image.present?
+      -#  = image_tag suggestion.image_url, class: 'proposal-image'
+      - unless constituency.description.blank?
+        - if controller.action_name == 'show'
+          %p.proposal-description
+            = constituency.description
+        - else
+          %p.proposal-description
+            = truncate(constituency.description, length: 230, separator: ' ')
+      -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Votes') }
+      -#  = _('Votes: %{votes}') % { votes: " " }
+      %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
+        = _('%{active}') % if constituency.active then {active: 'Active'} else {active: 'Inactive'} end
+      -#= render 'partials/proposal-classifiers-list', classifiers: constituency.classifiers
+    .col-lg-12
+      = render 'partials/admin/constituency-edit-btn', constituency: constituency
