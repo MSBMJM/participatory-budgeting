@@ -12,6 +12,9 @@
               -#= f.collection_select :active, Campaign.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
               = f.select :active, [['Active', true], ['Inactive', false]], { include_blank: false }, class: 'form-control'
             .form-group
+              %h5= _('Constituency')
+              = f.collection_select :constituency_id, Constituency.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
+            .form-group
               %h5= _('Campaign')
               = f.label _('Title')
               = f.text_field :title, class: 'form-control'

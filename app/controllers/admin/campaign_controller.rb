@@ -1,5 +1,6 @@
 class Admin::CampaignController < AdminController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :set_constituencies, only: [:new, :edit]
 
 
   def index
@@ -45,8 +46,12 @@ class Admin::CampaignController < AdminController
     @campaign = Campaign.find(params[:id])
   end
 
+  def set_constituencies
+    @constitencies = Constituency.all
+  end
+
   def campaign_params
-    p = params.require(:campaign).permit(:title, :description, :active, :budget, :start_date, :end_date)
+    p = params.require(:campaign).permit(:title, :description, :active, :constituency_id, :budget, :start_date, :end_date)
     p[:budget] = p[:budget]&.gsub(',', '_')&.to_d if p[:budget]
     # p[:image] = nil if params[:delete_image]
     p

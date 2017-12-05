@@ -26,6 +26,13 @@
       -#  = _('Votes: %{votes}') % { votes: " " }
       %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
         = _('%{active}') % if campaign.active then {active: 'Active'} else {active: 'Inactive'} end
+      -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
+      -#  = _('%{constituency}') % campaign.constituency.title
       -#= render 'partials/proposal-classifiers-list', classifiers: campaign.classifiers
+      - unless campaign.constituency.nil?
+        .proposal-tags
+          %span.tag.tag-default
+            = render 'partials/icons/location'
+            = campaign.constituency.title
     .col-lg-12
       = render 'partials/admin/campaign-edit-btn', campaign: campaign
