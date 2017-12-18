@@ -4,7 +4,17 @@ class Admin::CampaignController < AdminController
 
 
   def index
-    @campaigns = Campaign.all.order(updated_at: :desc)
+    @current_voter ||= Voter.find_by(id: session[:voter])
+    if @current_voter.access_ids == "all"
+      @campaigns = Campaign.all.order(updated_at: :desc)
+    else
+      @admin_constit = Constituency.find_by(id: @current_voter.access_ids)
+      # curr_campaign = @admin_constit.current_campaign
+      printf "GRAB Campaigns "
+      # Rails.logger.debug(curr_campaign.title)
+      @campaigns = @admin_constit.campaigns
+    end
+    # @campaigns = Campaign.all.order(updated_at: :desc)
   end
 
   def show

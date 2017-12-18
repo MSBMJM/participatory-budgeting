@@ -4,7 +4,23 @@ class Admin::ProposalsController < AdminController
   before_action :set_classifiers, only: [:new, :edit]
 
   def index
-    @proposals = Proposal.all.order(updated_at: :desc)
+    @current_voter ||= Voter.find_by(id: session[:voter])
+    if @current_voter.access_ids == "all"
+      @proposals = Proposal.all.order(updated_at: :desc)
+    else
+      @admin_constit = Constituency.find_by(id: @current_voter.access_ids)
+      curr_campaign = @admin_constit.current_campaign
+      printf "GRAB Proposals "
+      Rails.logger.debug(curr_campaign.title)
+      @proposals = curr_campaign.proposals
+    end
+    Rails.logger.debug("===Proposal Admin===")
+    printf "Voter "
+    Rails.logger.debug(@current_voter.email)
+    Rails.logger.debug(@current_voter.access_ids)
+    Rails.logger.debug("===Proposal Admin===")
+
+    # @proposals = Proposal.all.order(updated_at: :desc)
   end
 
   def show

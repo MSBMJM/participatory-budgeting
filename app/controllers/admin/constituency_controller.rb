@@ -3,7 +3,16 @@ class Admin::ConstituencyController < AdminController
 
 
   def index
-    @constituencies = Constituency.all.order(updated_at: :desc)
+    @current_voter ||= Voter.find_by(id: session[:voter])
+    if @current_voter.access_ids == "all"
+      @constituencies = Constituency.all.order(updated_at: :desc)
+    else
+      #create array and add constituency to it.
+      (@constituencies ||= []) << Constituency.find_by(id: @current_voter.access_ids)
+      printf "GRAB Constituency "
+      Rails.logger.debug(@constituencies)
+    end
+    # @constituencies = Constituency.all.order(updated_at: :desc)
   end
 
   def show
