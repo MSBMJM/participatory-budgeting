@@ -58,7 +58,11 @@ class VotersController < ApplicationController
     @voter.verify!
     session.delete(:verification_pending)
     sign_in(@voter)
-    redirect_to current_redirect!, success: _('<strong>Successfully verified</strong>, you can now take part in the participatory budgeting process.')
+    if admin_role?
+      redirect_to admin_proposals_path, success: _('Login Successful, Welcome Back Admin.')
+    else
+      redirect_to current_redirect!, success: _('<strong>Successfully verified</strong>, you can now take part in the participatory budgeting process.')
+    end
   end
 
   def voter_params
