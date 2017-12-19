@@ -2,7 +2,7 @@ class Voter < ApplicationRecord
   has_and_belongs_to_many :proposals
 
   validates :email, format: /@/
-  validates :access_ids, presence: true
+  # validates :access_ids, presence: true
 
   def verify!
     self.verified = true
