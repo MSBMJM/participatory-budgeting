@@ -10,7 +10,7 @@ class VotersController < ApplicationController
     params = ActionController::Parameters.new
     params.permitted? # => true
 
-    Rails.logger.debug("FearonTheOne")
+    # Rails.logger.debug("FearonTheOne")
     Rails.logger.debug(params.permitted?)
     Rails.logger.debug(params[:voter])
     email = voter_params[:email]
@@ -24,7 +24,20 @@ class VotersController < ApplicationController
       # @user = session[:user_to_verify]
       @voter = Voter.find_or_create_by(email: email)
       session[:voter_url] = verify_voters_url(token: @voter.verification_token)
-      redirect_to current_redirect!, notice: _('<strong>Verification pending</strong>, please click the following to login as user: ' + email + '   ' + "<a class='btn btn-primary btn-sml' href='" + session[:voter_url] + "'> Confirm login</a>") #_("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
+
+      # Rails.logger.debug("========FearonTheOne=========")
+      Rails.logger.debug(session[:voter])
+
+      roles = Admin::Role.all.pluck(:email)
+      # Rails.logger.debug(roles.any?{ |role| email&.include?(role) })
+
+      if roles.any?{ |role| email&.include?(role) }
+        redirect_to current_redirect!, notice: _("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
+      else
+        redirect_to current_redirect!, notice: _('<strong>Verification pending</strong>, please click the following to login as user: ' + email + '   ' + "<a class='btn btn-primary btn-sml' href='" + session[:voter_url] + "'> Confirm login</a>")
+      end
+
+      # redirect_to current_redirect!, notice: _('<strong>Verification pending</strong>, please click the following to login as user: ' + email + '   ' + "<a class='btn btn-primary btn-sml' href='" + session[:voter_url] + "'> Confirm login</a>") #_("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
     else
       redirect_to new_voter_path, error: _('Something went wrong with the registration process. Please, <strong>try again</strong>.')
     end
