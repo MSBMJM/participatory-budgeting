@@ -54,7 +54,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # ActionMailer default URL options
-  config.action_mailer.default_url_options = { host: 'openbudget.antoniofearon.com' } #{ host: 'openbudget.antoniofearon.com', 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'pb.caribbeanopeninstitute.org' } #{ host: 'openbudget.antoniofearon.com', 'localhost:3000' }
 
   ApplicationMailer.smtp_settings = {
       address:        'smtp.gmail.com',
