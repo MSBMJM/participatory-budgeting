@@ -50,7 +50,9 @@
                           = b.check_box class: 'form-check-input'
                           = b.object.name
             .form-group
-              %h4= _('Monitoring')
+              -#%h4= _('Monitoring')
+              %h3= _('Proposing member (Name):')
+              = f.text_field :proposing_member, class: 'form-control'
               -#.form-check
               -#  %label.form-check-label
               -#    = f.check_box :completed, class: 'form-check-input'

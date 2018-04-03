@@ -56,7 +56,7 @@ class Suggestion::SuggestionsController < ApplicationController
   end
 
   def suggestion_params
-    p = params.require(:suggestion).permit(:title, :description, :budget, :image, :completed, :campaign_id, :district_id, :area_id, tag_ids: [])
+    p = params.require(:suggestion).permit(:title, :description, :budget, :image, :proposing_member, :completed, :campaign_id, :district_id, :area_id, tag_ids: [])
     p[:budget] = "0"
     p[:budget] = p[:budget]&.gsub(',', '_')&.to_d if p[:budget] #no need for budget in suggestion probably
     p[:image] = nil if params[:delete_image]
