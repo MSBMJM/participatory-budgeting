@@ -21,7 +21,7 @@ class Suggestion::SuggestionsController < ApplicationController
   def create
     @suggestion = Suggestion.new(suggestion_params)
     if @suggestion.save
-      redirect_to suggestion_suggestions_path, success: _('Proposal was successfully submitted for review.')
+      redirect_to suggestion_suggestions_path, success: _('Suggestion was successfully submitted for review.')
     else
       flash.now[:error] = @suggestion.errors.full_messages.to_sentence
       render :new
@@ -31,7 +31,7 @@ class Suggestion::SuggestionsController < ApplicationController
   def update
 
     if @suggestion.update(suggestion_params)
-      redirect_to suggestion_suggestions_path, success: _('Proposal was successfully updated.')
+      redirect_to suggestion_suggestions_path, success: _('Suggestion was successfully updated.')
     else
       flash.now[:error] = @suggestion.errors.full_messages.to_sentence
       render :edit
@@ -40,7 +40,7 @@ class Suggestion::SuggestionsController < ApplicationController
 
   def destroy
     @suggestion.destroy
-    redirect_to suggestion_suggestions_path, success: _('Proposal was successfully destroyed.')
+    redirect_to suggestion_suggestions_path, success: _('Suggestion was successfully destroyed.')
   end
 
   private

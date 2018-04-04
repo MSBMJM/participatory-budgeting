@@ -12,7 +12,7 @@ class Admin::ProposalsController < AdminController
       curr_campaign = @admin_constit.current_campaign
       printf "GRAB Proposals "
       Rails.logger.debug(curr_campaign.title)
-      @proposals = curr_campaign.proposals
+      @proposals = curr_campaign
     end
     Rails.logger.debug("===Proposal Admin===")
     printf "Voter "
