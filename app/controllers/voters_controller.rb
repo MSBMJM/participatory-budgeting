@@ -38,9 +38,9 @@ class VotersController < ApplicationController
       #   redirect_to current_redirect!, notice: _('<strong>Verification pending</strong>, please click the following to login as user: ' + email + '   ' + "<a class='btn btn-primary btn-sml' href='" + session[:voter_url] + "'> Confirm login</a>")
       # end
 
-      # redirect_to current_redirect!, notice: _("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
+      redirect_to current_redirect!, notice: _("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
 
-      redirect_to current_redirect!, notice: _('<strong>Verification pending</strong>, please click the following to login as user: ' + email + '   ' + "<a class='btn btn-primary btn-sml' href='" + session[:voter_url] + "'> Confirm login</a>") #_("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
+      # redirect_to current_redirect!, notice: _('<strong>Verification pending</strong>, please click the following to login as user: ' + email + '   ' + "<a class='btn btn-primary btn-sml' href='" + session[:voter_url] + "'> Confirm login</a>") #_("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
     else
       redirect_to new_voter_path, error: _('Something went wrong with the registration process. Please, <strong>try again</strong>.')
     end
