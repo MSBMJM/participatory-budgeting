@@ -1,7 +1,7 @@
 class Voting::ProposalsController < ApplicationController
   def index
     if session[:verification_pending]
-      flash.now[:notice] = _('<strong>Verification pending</strong>, please see your inbox for further instructions.')
+      # flash.now[:notice] = _('<strong>Verification pending</strong>, please see your inbox for further instructions.')
     end
     # @campaign_budget = Campaign.current.budget
     @campaign = Campaign.find(session[:current_campaign_id])
