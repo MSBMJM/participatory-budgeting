@@ -11,8 +11,14 @@ class Admin::ProposalsController < AdminController
       @admin_constit = Constituency.find_by(id: @current_voter.access_ids)
       curr_campaign = @admin_constit.current_campaign
       printf "GRAB Proposals "
-      Rails.logger.debug(curr_campaign.title)
-      @proposals = curr_campaign
+      # Rails.logger.debug(curr_campaign.title)
+      # Rails.logger.debug(curr_campaign.id)
+      # Rails.logger.debug(curr_campaign.__id__)
+      # @proposals = curr_campaign
+      # @proposals = Proposal.find_all_by_campaign_id(curr_campaign.id)
+      # @proposals = Proposal.find(:all, :conditions => { "campaign_id" => curr_campaign.id })
+      @proposals = Proposal.where(campaign_id: curr_campaign.id )
+      Rails.logger.debug(@proposals.size)
     end
     Rails.logger.debug("===Proposal Admin===")
     printf "Voter "
