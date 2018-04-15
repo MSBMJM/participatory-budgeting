@@ -53,6 +53,8 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  ENV['ANALYTICS_ID'] = "UA-117584525-1"
+
   # ActionMailer default URL options
   config.action_mailer.default_url_options = { host: 'pb.caribbeanopeninstitute.org' } #{ host: 'openbudget.antoniofearon.com', 'localhost:3000' }
 
