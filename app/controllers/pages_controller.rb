@@ -54,6 +54,7 @@ class PagesController < ApplicationController
     Rails.logger.debug("Constituency Camp Try")
     Rails.logger.debug(params.inspect)
     Rails.logger.debug(params[:id])
+    Rails.logger.debug(params.to_s)
     @constituency = Constituency.find(params[:id])
     Rails.logger.debug(@constituency.title)
     @campaign = @constituency.current_campaign

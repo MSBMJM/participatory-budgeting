@@ -47,6 +47,8 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
 
+                                                                    # helper path identifier
+    get '/monitoring-proposals/:id',   to: 'proposals#index' , as: 'campaign_proposals'
     root 'proposals#index'
   end
 
@@ -71,5 +73,7 @@ Rails.application.routes.draw do
 
   get 'campaigns', to: 'pages#home'
   # root 'pages#home'
+
+
   root 'pages#constituency'
 end
