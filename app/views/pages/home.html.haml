@@ -42,7 +42,7 @@
           %p.process-state-description
             = _('The participatory selection process is finished and the CDF proposals have been  voted on. You can now monitor the progress of the chosen proposals.') #_('The participatory process is finished and the proposals are voted. You can now monitor the progress of the chosen proposals.')
           - if @campaign.closed?
-            %a.btn.btn-primary.btn-lg.btn-block{href: monitoring_proposals_path}
+            %a.btn.btn-primary.btn-lg.btn-block{href: monitoring_campaign_proposals_path(@campaign)}
               = _('Start monitoring')
   / .jumbotron
   /   %h2

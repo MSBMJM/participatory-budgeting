@@ -49,6 +49,7 @@ class Voting::ProposalsController < ApplicationController
     Rails.logger.debug(@proposals.size)
     bad_proposals ||= []
     count = 1
+    #checks for porper filtering of proposals
     @proposals.each do |prop|
       # printf "count: "
       # Rails.logger.debug(count)
