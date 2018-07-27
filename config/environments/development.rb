@@ -58,7 +58,17 @@ Rails.application.configure do
   # ActionMailer default URL options
   config.action_mailer.default_url_options = { host: 'pb.caribbeanopeninstitute.org' } #{ host: 'openbudget.antoniofearon.com', 'localhost:3000' }
 
-  ApplicationMailer.smtp_settings = {
+  # ApplicationMailer.smtp_settings = {
+  #     address:        'smtp.gmail.com',
+  #     port:           587, #465
+  #     authentication: :plain,
+  #     user_name:      'msbm.mobile@gmail.com',
+  #     password:       'M$bm_M0b1!3',
+  #     domain:         'gmail.com',
+  #     enable_starttls_auto: true #(ENV['MAILER_TLS'] == 'true')
+  # }
+
+  config.action_mailer.smtp_settings = {
       address:        'smtp.gmail.com',
       port:           587, #465
       authentication: :plain,

@@ -6,5 +6,9 @@ class ApplicationMailer < ActionMailer::Base
   # logger.formatter = config.log_formatter
   # config.logger = ActiveSupport::TaggedLogging.new(logger)
   #
-  # logger.info "Sending Email!!!!"
+  # logger.info "Trying tp Send Email!!!!"
+  # Rails.logger.debug("Trying tp Send Email!!!!")
+  # Rails.logger.debug(ENV['ANALYTICS_ID'])
+  # Rails.logger.debug("Fearon")
+  printf ENV['ANALYTICS_ID']
 end

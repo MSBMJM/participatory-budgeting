@@ -9,6 +9,6 @@ module OpenBudgets
     I18n.available_locales = [:en, :es, :el, :de, :fr]
     I18n.default_locale = :en
 
-    config.web_console.whitelisted_ips = '72.252.244.27'
+    #config.web_console.whitelisted_ips = '72.252.244.27'
   end
 end

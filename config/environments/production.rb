@@ -93,7 +93,7 @@ Rails.application.configure do
   # ActionMailer SMTP configuration
   ApplicationMailer.smtp_settings = {
       address:        'smtp.gmail.com',
-      port:           465,#587,
+      port:           587,#587,
       authentication: :plain,
       user_name:      'msbm.mobile@gmai.com',
       password:       'M$bm_M0b1!3',#'nbypryzxruijzimj',#'xnyqjsrwxpndxlvz',
