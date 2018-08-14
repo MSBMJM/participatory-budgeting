@@ -53,9 +53,10 @@
               -#%h4= _('Monitoring')
               %h3= _('Proposing member (Name):')
               = f.text_field :proposing_member, class: 'form-control'
-              -#.form-check
-              -#  %label.form-check-label
-              -#    = f.check_box :completed, class: 'form-check-input'
-              -#    = _('The proposal has been brought to completion')
+            .form-check
+              %label.form-check-label
+                = f.check_box :approved, class: 'form-check-input'
+                = _('Approve Suggestion to be viewed.')
+
             = f.submit _('Save'), class: 'btn btn-primary'
 

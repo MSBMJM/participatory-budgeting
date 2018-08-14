@@ -24,8 +24,8 @@
             = truncate(suggestion.description, length: 230, separator: ' ')
       -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Votes') }
       -#  = _('Votes: %{votes}') % { votes: " " }
-      %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
-        = _("Waiting For Review")
+      -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
+      -#  = _("Waiting For Review")
       = render 'partials/proposal-classifiers-list', classifiers: suggestion.classifiers
     .col-lg-12
       = render 'partials/admin/suggestion-edit-btn', suggestion: suggestion

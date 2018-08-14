@@ -46,25 +46,44 @@ class PagesController < ApplicationController
   end
 
   def constituency
+    unless session[:issue].nil?
+      session.delete(:issue)
+      flash.now[:notice] = _('There are currently no active campaigns for the selected constituency')
+    end
     @constituencies = Constituency.all.order(updated_at: :desc)
   end
 
   def constituency_campaign
-    Rails.logger.debug("=========================================")
+    Rails.logger.debug("=========================================+")
     Rails.logger.debug("Constituency Camp Try")
     Rails.logger.debug(params.inspect)
     Rails.logger.debug(params[:id])
     Rails.logger.debug(params.to_s)
     @constituency = Constituency.find(params[:id])
-    Rails.logger.debug(@constituency.title)
+    # Rails.logger.debug(@constituency.title)
     @campaign = @constituency.current_campaign
-    Rails.logger.debug(@campaign.title)
-    Rails.logger.debug("=========================================")
+    # Rails.logger.debug(@campaign.title)
+    Rails.logger.debug("=========================================+")
 
-    session[:current_campaign_id] = @campaign.id
+    # session[:current_campaign_id] = @campaign.id
     # Rails.logger.debug(session[:current_campaign].title)
     # session.delete(:current_campaign)
     # Rails.logger.debug(session[:current_campaign].title)
-    redirect_to campaigns_path
+    if @campaign.nil?
+      # session[:current_campaign_id] = @campaign.id
+      # Rails.logger.debug(session[:current_campaign_id])
+      # Rails.logger.debug("Like a Light")
+      # redirect_to campaigns_path
+      session[:issue] = true
+      redirect_to root_path
+    else
+      session[:current_campaign_id] = @campaign.id
+      Rails.logger.debug(session[:current_campaign_id])
+      Rails.logger.debug("Like a Light")
+      redirect_to campaigns_path
+    end
+    # Rails.logger.debug("After Unless pulled +++++")
+    # Rails.logger.debug("After Unless pulled +++++")
+    # redirect_to root_path
   end
 end
