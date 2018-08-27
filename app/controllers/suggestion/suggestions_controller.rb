@@ -5,7 +5,7 @@ class Suggestion::SuggestionsController < ApplicationController
   def index
     # @proposals = Proposal.all.order(updated_at: :desc)
     # @suggestions = Suggestion.all.order(updated_at: :desc)
-    @suggestions = Suggestion.all.find_by(approved:true)
+    @suggestions = Suggestion.where(approved:true)
     Rails.logger.debug("@suggestions.size")
     # Rails.logger.debug(@suggestions.size)
     # handle potential singular suggestion being returned
@@ -37,7 +37,7 @@ class Suggestion::SuggestionsController < ApplicationController
   def update
 
     if @suggestion.update(suggestion_params)
-      redirect_to suggestion_suggestions_path, success: _('Suggestion was successfully updated.')
+      redirect_to admin_suggestions_path, success: _('Suggestion was successfully updated.')
     else
       flash.now[:error] = @suggestion.errors.full_messages.to_sentence
       render :edit
@@ -46,7 +46,7 @@ class Suggestion::SuggestionsController < ApplicationController
 
   def destroy
     @suggestion.destroy
-    redirect_to suggestion_suggestions_path, success: _('Suggestion was successfully destroyed.')
+    redirect_to admin_suggestions_path, success: _('Suggestion was successfully deleted.')
   end
 
   private

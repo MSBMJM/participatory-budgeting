@@ -26,7 +26,8 @@ class Monitoring::ProposalsController < ApplicationController
       count = 1
       #checks for porper filtering of proposals
       @proposals.each do |prop|
-
+        # Rails.logger.debug("+++======+++")
+        # Rails.logger.debug(prop.campaign_id)
         if classifiers_filter.present?
 
           @bool2 = (prop&.classifier_ids & classifiers_filter) == prop&.classifier_ids ? "TRUE" : "FALSE" #prop&.classifier_ids #(prop.classifier_ids - classifiers_filter).empty?

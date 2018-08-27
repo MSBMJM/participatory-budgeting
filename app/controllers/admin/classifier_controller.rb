@@ -38,7 +38,7 @@ class Admin::ClassifierController < AdminController
 
   def destroy
     @classifier.destroy
-    redirect_to admin_classifier_index_path, success: _('classifier was successfully destroyed.')
+    redirect_to admin_classifier_index_path, success: _('classifier was successfully deleted.')
   end
 
   def set_classifier

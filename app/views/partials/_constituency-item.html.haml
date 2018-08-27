@@ -24,7 +24,7 @@
             = truncate(constituency.description, length: 230, separator: ' ')
       -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Votes') }
       -#  = _('Votes: %{votes}') % { votes: " " }
-      %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
+      %a.btn.btn-outline-primary.btn-sm.more-info-btn{ title: _('Status'), class: " " }
         = _('%{active}') % if constituency.active then {active: 'Active'} else {active: 'Inactive'} end
       -#= render 'partials/proposal-classifiers-list', classifiers: campaign.classifiers
     .col-lg-12

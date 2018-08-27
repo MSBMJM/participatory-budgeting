@@ -54,6 +54,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   ENV['ANALYTICS_ID'] = "UA-117584525-1"
+  ENV['FACEBOOK_ID'] = "1894116214229849"
 
   # ActionMailer default URL options
   config.action_mailer.default_url_options = { host: 'pb.caribbeanopeninstitute.org' } #{ host: 'openbudget.antoniofearon.com', 'localhost:3000' }

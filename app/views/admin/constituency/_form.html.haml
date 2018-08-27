@@ -1,7 +1,7 @@
 .voters-new.container
   .row
     .col-lg-8.offset-lg-2
-      %a.btn.btn-outline-primary.btn-sm.back-btn{ href: admin_constituency_index_path, title: _('Back') }
+      %a.btn.btn-outline-primary.btn-sm.back-btn{ href: admin_constituency_index_path, title: _('Back'), data: {confirm: _('Are you sure? You will lose all work') } }
         = render 'partials/icons/arrow-left'
         = _('Back')
       .card

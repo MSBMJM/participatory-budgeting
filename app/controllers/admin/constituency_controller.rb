@@ -47,7 +47,7 @@ class Admin::ConstituencyController < AdminController
 
   def destroy
     @constituency.destroy
-    redirect_to admin_constituency_index_path, success: _('constituency was successfully destroyed.')
+    redirect_to admin_constituency_index_path, success: _('constituency was successfully deleted.')
   end
 
   def set_constituency

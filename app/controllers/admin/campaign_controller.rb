@@ -49,7 +49,7 @@ class Admin::CampaignController < AdminController
 
   def destroy
     @campaign.destroy
-    redirect_to admin_proposals_url, success: _('Campaign was successfully destroyed.')
+    redirect_to admin_proposals_url, success: _('Campaign was successfully deleted.')
   end
 
   def set_campaign

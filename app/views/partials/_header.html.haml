@@ -2,7 +2,7 @@
   .container
     .row.centrable
       %nav.navbar
-        %a.navbar-brand{ href: root_path }
+        %a.navbar-brand{ href: (admin_zone? ? admin_proposals_path : root_path) }
           %h1
             = _('OpenBudgets')
             - if admin_zone?

@@ -1,7 +1,7 @@
 .voters-new.container
   .row
     .col-lg-8.offset-lg-2
-      %a.btn.btn-outline-primary.btn-sm.back-btn{ href: admin_campaign_index_path, title: _('Back') }
+      %a.btn.btn-outline-primary.btn-sm.back-btn{ href: admin_campaign_index_path, title: _('Back'), data: {confirm: _('Are you sure? You will lose all work') } }
         = render 'partials/icons/arrow-left'
         = _('Back')
       .card
@@ -17,16 +17,16 @@
             .form-group
               %h5= _('Campaign')
               = f.label _('Title')
-              = f.text_field :title, class: 'form-control'
+              = f.text_field :title, class: 'form-control', required: true
               = f.label _('Description')
-              = f.text_area :description, rows: 8, class: 'form-control'
+              = f.text_area :description, rows: 8, class: 'form-control', required: true
               = f.label _('Budget')
-              = f.text_field :budget, value: number_to_currency(@campaign.budget, precision: 2, format: "%n"), class: 'form-control'
-              = f.label _('Start Date')
-              = f.text_field :start_date, class: 'form-control'
+              = f.text_field :budget, value: number_to_currency(@campaign.budget, precision: 2, format: "%n"), class: 'form-control', required: true
+              = f.label _('Start Date (YYYY-MM-DD)')
+              = f.text_field :start_date, class: 'form-control', required: true
               -#data:{ provide:'datepicker' }
-              = f.label _('End Date')
-              = f.text_field :end_date, class: 'form-control'
+              = f.label _('End Date (YYYY-MM-DD)')
+              = f.text_field :end_date, class: 'form-control', required: true
               -#= f.label _('Image')
               -#- if @proposal.image.present?
                 .card-block

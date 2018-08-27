@@ -61,7 +61,7 @@ class Admin::ProposalsController < AdminController
 
   def destroy
     @proposal.destroy
-    redirect_to admin_proposals_url, success: _('Proposal was successfully destroyed.')
+    redirect_to admin_proposals_url, success: _('Proposal was successfully deleted.')
   end
 
   def suggestion

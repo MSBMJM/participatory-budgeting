@@ -1,7 +1,7 @@
 .voters-new.container
   .row
     .col-lg-8.offset-lg-2
-      %a.btn.btn-outline-primary.btn-sm.back-btn{ href: suggestion_suggestions_path, title: _('Back') }
+      %a.btn.btn-outline-primary.btn-sm.back-btn{ href: (admin_role? ? admin_suggestions_path : suggestion_suggestions_path), title: _('Back'), data: {confirm: _('Are you sure? You will lose all work') } }
         = render 'partials/icons/arrow-left'
         = _('Back')
       .card
@@ -11,11 +11,11 @@
             -#  %h5= _('Campaign')
             -#  = f.collection_select :campaign_id, Campaign.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
             .form-group
-              %h5= _('Proposal')
+              %h5= _('Suggestion')
               = f.label _('Title')
-              = f.text_field :title, class: 'form-control'
+              = f.text_field :title, class: 'form-control', required: true
               = f.label _('Description')
-              = f.text_area :description, rows: 8, class: 'form-control'
+              = f.text_area :description, rows: 8, class: 'form-control', required: true
               -#= f.label _('Budget')
               -#= f.text_field :budget, value: number_to_currency(@suggestion.budget, precision: 2, format: "%n"), class: 'form-control'
               = f.label _('Image')
@@ -32,7 +32,7 @@
                     = render 'partials/icons/location'
                     %strong
                       = _('Division')
-                  = f.collection_select :district_id, @districts, :id, :name, {}, { class: 'form-control' }
+                  = f.collection_select :district_id, @districts, :id, :name, {}, { class: 'form-control', required: true }
                 .col-lg-4
                   %p
                     = render 'partials/icons/folder'
@@ -51,12 +51,13 @@
                           = b.object.name
             .form-group
               -#%h4= _('Monitoring')
-              %h3= _('Proposing member (Name):')
+              %h3= _('Suggesting member (Name):')
               = f.text_field :proposing_member, class: 'form-control'
-            .form-check
-              %label.form-check-label
-                = f.check_box :approved, class: 'form-check-input'
-                = _('Approve Suggestion to be viewed.')
+            - if admin_role?
+              .form-check
+                %label.form-check-label
+                  = f.check_box :approved, class: 'form-check-input'
+                  = _('Approve Suggestion to be viewed.')
 
             = f.submit _('Save'), class: 'btn btn-primary'
 
