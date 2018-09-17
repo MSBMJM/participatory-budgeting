@@ -53,7 +53,7 @@
               %h4= _('Monitoring')
               .form-check
                 %label.form-check-label
-                  = f.check_box :completed, class: 'form-check-input'
+                  = f.check_box :completed, {class: 'form-check-input'}, true, false
                   = _('The proposal has been brought to completion')
             = f.submit _('Save'), class: 'btn btn-primary'
 

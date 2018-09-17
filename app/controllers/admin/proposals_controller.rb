@@ -10,7 +10,7 @@ class Admin::ProposalsController < AdminController
     else
       @admin_constit = Constituency.find_by(id: @current_voter.access_ids)
       curr_campaign = @admin_constit.current_campaign
-      printf "GRAB Proposals "
+      # printf "GRAB Proposals "
       # Rails.logger.debug(curr_campaign.title)
       # Rails.logger.debug(curr_campaign.id)
       # Rails.logger.debug(curr_campaign.__id__)
@@ -20,11 +20,11 @@ class Admin::ProposalsController < AdminController
       @proposals = Proposal.where(campaign_id: curr_campaign.id )
       Rails.logger.debug(@proposals.size)
     end
-    Rails.logger.debug("===Proposal Admin===")
-    printf "Voter "
-    Rails.logger.debug(@current_voter.email)
-    Rails.logger.debug(@current_voter.access_ids)
-    Rails.logger.debug("===Proposal Admin===")
+    # Rails.logger.debug("===Proposal Admin===")
+    # printf "Voter "
+    # Rails.logger.debug(@current_voter.email)
+    # Rails.logger.debug(@current_voter.access_ids)
+    # Rails.logger.debug("===Proposal Admin===")
 
     # @proposals = Proposal.all.order(updated_at: :desc)
   end
@@ -50,13 +50,35 @@ class Admin::ProposalsController < AdminController
   end
 
   def update
+    # Rails.logger.debug("===Proposal Update===")
+    # Rails.logger.debug(@proposal.title)
+    # Rails.logger.debug(@proposal.votes)
+    # Rails.logger.debug(@proposal.completed)
 
-    if @proposal.update(proposal_params)
-      redirect_to admin_proposals_path, success: _('Proposal was successfully updated.')
+    proposal_param = params.require(:proposal).permit(:completed)
+    proposal_completed = proposal_param[:completed]
+
+    if proposal_completed.nil?
+      proposal_completed = false
     else
-      flash.now[:error] = @proposal.errors.full_messages.to_sentence
-      render :edit
+      proposal_completed = true
     end
+
+    # Rails.logger.debug("===Proposal Update===")
+
+
+    if @proposal.votes == 0 || proposal_completed != @proposal.completed
+      if @proposal.update(proposal_params)
+        redirect_to admin_proposals_path, success: _('Proposal was successfully updated.')
+      else
+        flash.now[:error] = @proposal.errors.full_messages.to_sentence
+        render :edit
+      end
+    else
+      redirect_to admin_proposals_path, error: _('Proposal already has votes, unable to update!')
+    end
+
+
   end
 
   def destroy
@@ -85,9 +107,16 @@ class Admin::ProposalsController < AdminController
   end
 
   def proposal_params
-    p = params.require(:proposal).permit(:title, :description, :budget, :image, :completed, :campaign_id, :district_id, :area_id, tag_ids: [])
-    p[:budget] = p[:budget]&.gsub(',', '_')&.to_d if p[:budget]
-    p[:image] = nil if params[:delete_image]
+    if @proposal.votes != 0
+      p = params.require(:proposal).permit(:completed)
+    else
+      p = params.require(:proposal).permit(:title, :description, :budget, :image, :completed, :campaign_id, :district_id, :area_id, tag_ids: [])
+      p[:budget] = p[:budget]&.gsub(',', '_')&.to_d if p[:budget]
+      p[:image] = nil if params[:delete_image]
+    end
+    if p[:completed].nil?
+      p[:completed] = false
+    end
     p
   end
 end

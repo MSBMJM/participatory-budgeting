@@ -6,7 +6,7 @@
           = number_to_currency(suggestion.budget, unit: '', precision: 2, format: "%n %u")
         $
       - unless controller.action_name == 'show'
-        %a.proposal-title{ href: suggestion_suggestion_path(suggestion.id), title: suggestion.title }
+        %a.proposal-title{ href: edit_suggestion_suggestion_path(suggestion), title: suggestion.title }
           %h3
             = suggestion.title
       - else
@@ -24,8 +24,9 @@
             = truncate(suggestion.description, length: 230, separator: ' ')
       -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Votes') }
       -#  = _('Votes: %{votes}') % { votes: " " }
-      -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
-      -#  = _("Waiting For Review")
+      - unless suggestion.reviewed
+        %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
+          = _("Waiting For Review")
       = render 'partials/proposal-classifiers-list', classifiers: suggestion.classifiers
     .col-lg-12
       = render 'partials/admin/suggestion-edit-btn', suggestion: suggestion

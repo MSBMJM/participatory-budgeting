@@ -6,6 +6,11 @@ class Voting::ProposalsController < ApplicationController
     # @campaign_budget = Campaign.current.budget
     @campaign = Campaign.find(session[:current_campaign_id])
 
+    if current_voter.votes_submitted?(@campaign)
+      redirect_to summarize_voting_proposals_path
+      return
+    end
+
     @campaign_budget = @campaign.budget
 
     classifiers_filter = params[:class].split(',').map(&:to_i) if params[:class]
@@ -96,11 +101,14 @@ class Voting::ProposalsController < ApplicationController
 
   def update
     @proposal = Proposal.find(params[:id])
-    result = if @proposal.voted_by?(current_voter)
-      UnvoteProposal.call(current_voter, @proposal)
-    else
-      VoteProposal.call(current_voter, @proposal)
+    unless current_voter.votes_submitted?(@proposal.campaign)
+      result = if @proposal.voted_by?(current_voter)
+        UnvoteProposal.call(current_voter, @proposal)
+      else
+        VoteProposal.call(current_voter, @proposal)
+      end
     end
+
 
     if result
       head :no_content
@@ -110,8 +118,18 @@ class Voting::ProposalsController < ApplicationController
   end
 
   def summarize
+    # Rails.logger.debug("Does Not belong!")
+    # Rails.logger.debug(@campaign)
+    # Rails.logger.debug(params[:id])
+    @campaign = Campaign.find(session[:current_campaign_id])
+    # Rails.logger.debug(@campaign.title)
     if current_voter
+      # Rails.logger.debug(current_voter.votes_submitted?(@campaign))
       @proposals = current_voter.proposals.order(budget: :desc)
+      unless current_voter.votes_submitted?(@campaign)
+        current_voter.voted_campaigns << @campaign.id.to_s + ','
+        current_voter.save
+      end
       flash.now[:notice] = _('Your vote has been registered successfully.')
     else
       referer = request.referer || new_voter_path(referer: request.path)

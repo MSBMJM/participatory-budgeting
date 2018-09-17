@@ -58,6 +58,10 @@
                 %label.form-check-label
                   = f.check_box :approved, class: 'form-check-input'
                   = _('Approve Suggestion to be viewed.')
+              .form-check
+                %label.form-check-label
+                  = f.check_box :reviewed, class: 'form-check-input'
+                  = _('Mark suggestion as reviewed.')
 
             = f.submit _('Save'), class: 'btn btn-primary'
 

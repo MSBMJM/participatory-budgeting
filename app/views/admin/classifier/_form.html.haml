@@ -14,7 +14,7 @@
             .form-group
               %h5= _('Classifier')
               = f.label _('Name')
-              = f.text_field :name, class: 'form-control'
+              = f.text_field :name, class: 'form-control', required: true
               -#= f.label _('Description')
               -#= f.text_area :description, rows: 8, class: 'form-control'
               -#= f.label _('Budget')

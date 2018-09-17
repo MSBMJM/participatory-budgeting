@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180809175810) do
+ActiveRecord::Schema.define(version: 20180914010903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20180809175810) do
     t.integer  "campaign_id"
     t.text     "proposing_member"
     t.boolean  "approved"
+    t.boolean  "reviewed"
     t.index ["campaign_id"], name: "index_suggestions_on_campaign_id", using: :btree
   end
 
@@ -125,6 +126,7 @@ ActiveRecord::Schema.define(version: 20180809175810) do
     t.string   "verification_token"
     t.string   "name"
     t.text     "access_ids"
+    t.text     "voted_campaigns",    default: ""
     t.index ["email"], name: "index_voters_on_email", unique: true, using: :btree
     t.index ["verification_token"], name: "index_voters_on_verification_token", unique: true, using: :btree
   end

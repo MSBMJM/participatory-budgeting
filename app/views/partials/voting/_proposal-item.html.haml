@@ -27,5 +27,6 @@
       = render 'partials/proposal-classifiers-list', classifiers: proposal.classifiers
       - if controller.action_name == 'show'
         = render 'partials/social-sharer', title: proposal.title
-      - unless controller.action_name == 'summarize'
-        = render 'partials/voting/proposal-vote-btn', proposal: proposal
+      - unless current_voter.votes_submitted?(proposal.campaign)
+        - unless controller.action_name == 'summarize'
+          = render 'partials/voting/proposal-vote-btn', proposal: proposal
