@@ -6,9 +6,11 @@ class Voting::ProposalsController < ApplicationController
     # @campaign_budget = Campaign.current.budget
     @campaign = Campaign.find(session[:current_campaign_id])
 
-    if current_voter.votes_submitted?(@campaign)
-      redirect_to summarize_voting_proposals_path
-      return
+    unless current_voter.nil?
+      if current_voter.votes_submitted?(@campaign)
+        redirect_to summarize_voting_proposals_path
+        return
+      end
     end
 
     @campaign_budget = @campaign.budget
