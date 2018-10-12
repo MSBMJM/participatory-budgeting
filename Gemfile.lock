@@ -150,6 +150,9 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    passenger (5.3.5)
+      rack
+      rake (>= 0.8.1)
     pg (0.20.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -266,6 +269,7 @@ DEPENDENCIES
   jquery-rails (= 4.3.1)
   listen (= 3.1.5)
   minitest (= 5.10.1)
+  passenger (>= 5.0.25)
   pg (= 0.20.0)
   pry-rails (= 0.3.6)
   puma (= 3.8.2)
@@ -286,4 +290,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

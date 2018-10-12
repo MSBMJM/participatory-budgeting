@@ -25,6 +25,7 @@
   %body{ class: (scope.blank? ? 'voting' : scope) + ' ' + controller.controller_name + ' ' + controller.action_name }
     .wrapper
       = render 'partials/header'
+      .spacer-global
       %main.main-container{ role: 'main' }
         = render 'partials/alerts'
         = yield

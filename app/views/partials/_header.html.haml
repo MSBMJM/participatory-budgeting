@@ -1,12 +1,18 @@
-%header{ role: 'banner' }
+%header{ role: 'banner', class: 'navbar-fixed-top' }
   .container
+    .navbar-default
+      %button.navbar-toggle{'data-target' => '#bs-example-navbar-collapse-1', 'data-toggle' => 'collapse', :type => 'button'}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
     .row.centrable
       %nav.navbar
         %a.navbar-brand{ href: (admin_zone? ? admin_proposals_path : root_path) }
           %h1
-            = _('OpenBudgets')
             - if admin_zone?
-              %span{style: 'font-weight: 100;'} Admin
+              -#%span{style: 'font-weight: 100; padding-left: 250px;'} Admin
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
       .navbar-user
         - if current_voter
           = _('Welcome %{current_voter}') % { current_voter: current_voter }
@@ -26,3 +32,5 @@
         - else
           %a{ href: new_voter_path(redirect: request.path), title: _('Sign in / Register') }
             = _('Sign in / Register')
+
+

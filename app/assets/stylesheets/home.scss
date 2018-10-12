@@ -115,3 +115,56 @@
     }
   }
 }
+
+.header {
+  background-color: #FDCE08;
+}
+
+.navbar-fixed-top {
+  background-color: #FDCE08;
+}
+
+.navbar-brand{
+  background-image: url(asset-path('img/logo.png'));
+  background-size: contain;
+  background-repeat: no-repeat;
+  /*		background-color: aqua;*/
+  width: 276px;
+  height: 72px;
+}
+ul.nav.navbar-nav>li.active>a, ul.nav.navbar-nav>li.active>a:focus, ul.nav.navbar-nav>li.active>a:hover {
+  background-color: transparent;
+}
+@media only screen and (min-width: 768px) {
+  ul.nav.navbar-nav>li>a {
+    padding-top: 0px!important;
+    padding-bottom: 0px!important;
+  }
+  ul.nav.navbar-nav {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+}
+
+.spacer-global {
+  padding-top: 90px!important;
+}
+
+.row:before, .row:after{
+  content: none;
+}
+
+nav.navbar {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+//.navbar-user {
+//  margin-top: 25px;
+//}
+//
+//.row:after{
+//  content: none;
+//}
+
+.navbar-toggle .icon-bar{ background-color: #fff;}

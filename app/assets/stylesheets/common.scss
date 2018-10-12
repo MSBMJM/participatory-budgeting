@@ -32,9 +32,9 @@ header{
 }
 
 .navbar-user{
-  position: absolute;
+  //position: absolute;
   top: 0.5rem;
-  left: 0;
+  //left: 0; --jam
   right: 0;
   text-align: center;
 }
@@ -50,17 +50,25 @@ header{
   }
 
   .navbar-user{
-    position: static;
-    margin-top: 1.75rem;
+    //position: static; --jam
+    position: absolute;
+    margin-top: 2rem;
+
   }
 }
+
+//@include media-breakpoint-up(xs) {
+//  .navbar-user{
+//      position: static;
+//  }
+//}
 
 .navbar {
   padding: 1rem;
 
   .navbar-brand{
     padding-top: 0;
-    margin: 2.25rem 0 0;
+    //margin: 2.25rem 0 0; -- jam
 
     h1{
       padding-top: 0;
