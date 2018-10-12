@@ -1,14 +1,18 @@
-%footer.footer{ role: 'contentinfo' }
-  .container.fill
-    %p.credits
-      = raw _("<a class='logo-open-budgets' href='http://openbudgets.eu/' target='_blank' title='OpenBudgets.eu'><img src='%{logo_openbudgets}' alt='OpenBudgets.eu'/></a> Adapted from Participatory Budgeting Tool developed by <a class='logo-civio' href='http://civio.es/' target='_blank' title='Civio'><img src='%{logo_civio}' alt='Civio'/></a>") % { logo_openbudgets: asset_path('img/COI-Logo-white-small.png'), logo_civio: asset_path('img/civio-logo-white.png') }
-    %ul.nav.nav-inline
-      -#%li.nav-item
-      -#  %a.nav-link.m-0.p-0{ href: terms_of_service_path() }
-      -#    = _('Terms of service')
-      -#%li.nav-item
-      -#  %a.nav-linkm-0.p-0{ href: privacy_policy_path() }
-      -#    = _('Privacy policy')
+%footer.container-fluid.footer{ role: 'contentinfo' }
   .container
-    %p.funding-credit
-      = raw _("Open Budget initiative in Jamaica is supported by funding from the Regional Fund for Digital Innovation in LAC (FRIDA)")#_("Open Budget initiatives in the Caribbean supported by funding from the International Development Research Centre")
+    .row.footer-logo-row
+      .col-xs-6.col-sm-3.col-md-3.col-lg-3
+        -#%p.credits
+        = raw _("<a href='http://caribbeanopeninstitute.org/' target='_blank' title='OpenBudgets.eu'><img class='coi-logo' src='%{logo_openbudgets}' alt='OpenBudgets.eu'/></a>") % { logo_openbudgets: asset_path('img/coi-logo.png') }
+      .col-xs-6.col-sm-3.col-md-3.col-lg-3
+        = raw _("<a href='https://www.slashroots.org/' target='_blank' title='OpenBudgets.eu'><img class='srfdn-logo' src='%{logo_slashroots}' alt='OpenBudgets.eu'/></a>") % { logo_slashroots: asset_path('img/srfdn_logo_white.png') }
+      .hidden-xs.col-sm-3.col-md-3.col-lg-3
+
+      .col-xs-12.col-sm-3.col-md-3.col-lg-3
+        %span.small-white-sanserif.civio-credit
+          = 'Adapted from Participatory Budgeting Tool developed by:'
+        = raw _("<a href='http://civio.es/' target='_blank' title='Civio'><img class='civio-logo' src='%{logo_civio}' alt='Civio'/></a>") % {logo_civio: asset_path('img/civio-logo.png')}
+    .row
+      .col-lg-12
+        %span.frida-credit.small-white-sanserif
+          = 'Open Budget initiative in Jamaica is supported by funding from the Regional Fund for Digital Innovation in LAC (FRIDA)'
