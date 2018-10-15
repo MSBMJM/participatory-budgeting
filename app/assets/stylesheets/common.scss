@@ -97,7 +97,7 @@ header{
 // Main
 
 .main-container{
-  padding-bottom: 1rem;
+  //padding-bottom: 1rem;
 }
 
 // Footer
@@ -410,4 +410,8 @@ header{
   display: block;
   width: 100%;
   margin-top: 20px;
+}
+
+select.form-control:not([size]):not([multiple]) {
+  height: auto;
 }

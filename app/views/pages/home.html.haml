@@ -1,49 +1,154 @@
-.jumbotron
-  .overlay
-  .container
-    %h2
-      = _('You decide where the money goes!')
-    %h3
-      = _("Welcome to Jamaica's CDF Participatory Budgeting process")
+-#.jumbotron
+-#  .overlay
+-#  .container
+-#    %h2
+-#      = _('You decide where the money goes!')
+-#    %h3
+-#      = _("Welcome to Jamaica's CDF Participatory Budgeting process")
 
-.home.container
-  .row
-    .col-md-4
-      .card.process-state{ class: ('active' if @campaign.pending?) }
-        .card-block
-          %p.process-state-number
-            1.
-          %p.process-state-title
-            = _('Process consultation') #_('Process announcement')
-          %p.process-state-description
-            = _('All citizens of the Constituency are invited to consider proposals and make recommendations on how the Constituency Development Fund  should be used for the new financial year.') #@campaign.description
-            - if @campaign.pending?
-              %a.btn.btn-primary.btn-lg.btn-block{href: suggestion_suggestions_path}
-                = _('Submit Proposal')
-    .col-md-4
-      .card.process-state{ class: ('active' if @campaign.open?) }
-        .card-block
-          %p.process-state-number
-            2.
-          %p.process-state-title
-            = _('Process voting')
-          %p.process-state-description
-            = _('You can choose as many proposals as you want, as long as all the available budget is not allocated.')#_('You can choose as many proposals as you want, as long as all the available budget is not allocated.')
+.container-fluid.jumbotron-custom
+  .container
+    .row
+      .col-md-6
+        %h1.headline-copy.serif.gold-text
+          = "It's your constituency funds. Tell your MP how to spend it!"
+        .large-title-bar.green-bg
+        %p.large-copy.white-text
+          = 'If you live or work in any of the pilot communities in South East St. Andrew, you can submit ideas for your MP to spend Constituency Development Funds (CDF) on. You can also vote on these ideas, and monitor their progress when they become projects.'
+      .col-md-6
+.container-fluid
+  .container.section-container
+    .row
+      .col-md-6.col-lg-6
+        %h1.title-copy.serif
+          = 'Who Can Participate'
+        .title-bar.green-bg
+        .row.section-row
+          .col-md-12
+            %p.body-copy
+              = 'Anyone who lives or works in any of the following communities in the constituency of South East St. Andrew:'
+        .row.section-row
+          .col-xs-6
+            %ul.body-copy
+              %li 'McGregor Gardens'
+              %li 'Mountain Court'
+              %li 'Musgrave'
+              %li 'New Kingston'
+              %li 'Stadium Gardens'
+          .col-xs-6
+            %ul.body-copy
+              %li 'Swallowfield'
+              %li 'Trafalgar Park'
+              %li 'Vineyard Town'
+              %li 'Woodford Park'
+              %li 'Worthington'
+          .col-xs-12
+      .col-md-6.col-lg-6
+        .constituency-map
+        -#= raw _("<a href='http://civio.es/' target='_blank' title='Civio'><img class='civio-logo' src='%{logo_civio}' alt='Civio'/></a>") % {logo_civio: asset_path('img/civio-logo.png')}
+        -#= raw _("<div style='width: 100%; padding-top: 100%; background-image: url(images/map.jpg); background-repeat: no-repeat; background-size: cover;'></div>") % { image_map: asset_path('img/map.jpg') }
+
+  -#.row.row-height-300
+  -#  .col-md-6.col-lg-6
+  -#  .col-md-6.col-lg-6.row-height-300
+  -#    = raw('<iframe style="height: 100%; width: 100%" src="https://www.google.com/maps/d/u/0/embed?mid=1Sof4RegHwNVI-XhOw66Ol6fDMsK2xSr4"></iframe>  ')
+
+
+-#.home.container
+-#  .row
+-#    .col-md-4
+-#      .card.process-state{ class: ('active' if @campaign.pending?) }
+-#        .card-block
+-#          %p.process-state-number
+-#            1.
+-#          %p.process-state-title
+-#            = _('Process consultation') #_('Process announcement')
+-#          %p.process-state-description
+-#            = _('All citizens of the Constituency are invited to consider proposals and make recommendations on how the Constituency Development Fund  should be used for the new financial year.') #@campaign.description
+-#            - if @campaign.pending?
+-#              %a.btn.btn-primary.btn-lg.btn-block{href: suggestion_suggestions_path}
+-#                = _('Submit Proposal')
+-#    .col-md-4
+-#      .card.process-state{ class: ('active' if @campaign.open?) }
+-#        .card-block
+-#          %p.process-state-number
+-#            2.
+-#          %p.process-state-title
+-#            = _('Process voting')
+-#          %p.process-state-description
+-#            = _('You can choose as many proposals as you want, as long as all the available budget is not allocated.')#_('You can choose as many proposals as you want, as long as all the available budget is not allocated.')
+-#          - if @campaign.open?
+-#            %a.btn.btn-primary.btn-lg.btn-block{href: voting_proposals_path}
+-#              = _('Start voting')
+-#    .col-md-4
+-#      .card.process-state{ class: ('active' if @campaign.closed?) }
+-#        .card-block
+-#          %p.process-state-number
+-#            3.
+-#          %p.process-state-title
+-#            = _('Process monitoring') #_('Process result')
+-#          %p.process-state-description
+-#            = _('The participatory selection process is finished and the CDF proposals have been  voted on. You can now monitor the progress of the chosen proposals.') #_('The participatory process is finished and the proposals are voted. You can now monitor the progress of the chosen proposals.')
+-#          - if @campaign.closed?
+-#            %a.btn.btn-primary.btn-lg.btn-block{href: monitoring_campaign_proposals_path(@campaign)}
+-#              = _('Start monitoring')
+
+.container-fluid.gold-bg
+  .container.stages-container
+    .row
+      .container
+        %h1.title-copy.serif
+          = 'How to Participate'
+        .title-bar.green-bg
+    .row.stages-row
+      .col-md-4
+        .white-bg.stages-card{ class: ('active' if @campaign.pending?) }
+          .square-50.image-bg.suggestion
+          %h2.serif.title-copy
+            = 'Phase 1: Submit'
+          %p.body-copy
+            -#= 'Opens: [DD MMM YYYY]'
+            %br
+            -#= 'Closes: [DD MMM YYYY]'
+            %br
+            %br
+            = 'You get to choose which ideas get funded. Vote, and encourage others to vote on the project proposals. You can choose as many proposals as you want, as long as the total does not exceed the $1 million budget.'
+          - if @campaign.pending?
+            .btn-container
+              %a.btn.btn-primary.btn-lg.btn-block.green-bg.green-border-dark.border-1px{href: suggestion_suggestions_path}
+                = 'Submit Proposal'
+      .col-md-4
+        .white-bg.stages-card{class: ('active' if @campaign.open?), style:'height: 100%; width: 100%'}
+          .square-50.image-bg.vote
+          %h2.serif.title-copy
+            = 'Phase 2: Vote'
+          %p.body-copy
+            = 'Opens: ' + @campaign.start_date.strftime("%a, %d %b %Y")
+            %br
+            = 'Closes: ' + @campaign.end_date.strftime("%a, %d %b %Y")
+            %br
+            %br
+            = 'You get to choose which ideas get funded. Vote, and encourage others to vote on the project proposals. You can choose as many proposals as you want, as long as the total does not exceed the $1 million budget.'
           - if @campaign.open?
-            %a.btn.btn-primary.btn-lg.btn-block{href: voting_proposals_path}
-              = _('Start voting')
-    .col-md-4
-      .card.process-state{ class: ('active' if @campaign.closed?) }
-        .card-block
-          %p.process-state-number
-            3.
-          %p.process-state-title
-            = _('Process monitoring') #_('Process result')
-          %p.process-state-description
-            = _('The participatory selection process is finished and the CDF proposals have been  voted on. You can now monitor the progress of the chosen proposals.') #_('The participatory process is finished and the proposals are voted. You can now monitor the progress of the chosen proposals.')
+            .btn-container
+              %a.btn.btn-primary.btn-lg.btn-block.green-bg.green-border-dark.border-1px{href: voting_proposals_path}
+                = 'Start voting'
+      .col-md-4
+        .white-bg.stages-card{class: ('active' if @campaign.closed?), style:'height: 100%; width: 100%'}
+          .square-50.image-bg.monitor
+          %h2.serif.title-copy
+            = 'Phase 3: Monitor'
+          %p.body-copy
+            -#= 'Opens: [DD MMM YYYY]'
+            %br
+            -#= 'Closes: [DD MMM YYYY]'
+            %br
+            %br
+              ='Once phases 1 and 2 are complete you can monitor the progress of the top proposals that are chosen to become projects!'
           - if @campaign.closed?
-            %a.btn.btn-primary.btn-lg.btn-block{href: monitoring_campaign_proposals_path(@campaign)}
-              = _('Start monitoring')
+            .btn-container
+              %a.btn.btn-primary.btn-lg.btn-block.green-bg.green-border-dark.border-1px{href: monitoring_campaign_proposals_path(@campaign)}
+                = 'Start monitoring'
   / .jumbotron
   /   %h2
   /     Welcome to our participatory budgeting process

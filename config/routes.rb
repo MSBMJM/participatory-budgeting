@@ -75,5 +75,6 @@ Rails.application.routes.draw do
   # root 'pages#home'
 
 
-  root 'pages#constituency'
+  # root 'pages#constituency'
+  root 'pages#home'
 end

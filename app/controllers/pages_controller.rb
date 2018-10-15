@@ -15,7 +15,7 @@ class PagesController < ApplicationController
       # Rails.logger.debug("Verify After Point")
       Rails.logger.debug("Flash Point")
       # flash.now[:notice] = _('<strong>Verification pending</strong>, please see your inbox for further instructions.')
-      flash.now[:notice] = _('Flash Here')
+      # flash.now[:notice] = _('Flash Here')
     end
     if session[:current_campaign_id]
       # @campaign = session[:current_campaign_id]
@@ -33,15 +33,15 @@ class PagesController < ApplicationController
       @campaign = Campaign.current
       Rails.logger.debug("====ELSE====")
     end
-    if @campaign.pending?
-      flash.now[:notice] = _('We are at the consultation stage. Send us your suggestions for constituency projects')
-    end
-    if @campaign.open?
-      flash.now[:notice] = _('We are at the selection stage. View the proposed projects and vote for your preferences')
-    end
-    if @campaign.closed?
-      flash.now[:notice] = _('We are at the monitoring stage: Check here for regular updates on how your CDF projects are progressing')
-    end
+    # if @campaign.pending?
+    #   flash.now[:notice] = _('We are at the consultation stage. Send us your suggestions for constituency projects')
+    # end
+    # if @campaign.open?
+    #   flash.now[:notice] = _('We are at the selection stage. View the proposed projects and vote for your preferences')
+    # end
+    # if @campaign.closed?
+    #   flash.now[:notice] = _('We are at the monitoring stage: Check here for regular updates on how your CDF projects are progressing')
+    # end
     # @campaign = Campaign.current
   end
 

@@ -1,11 +1,11 @@
-%header{ role: 'banner', class: 'navbar-fixed-top' }
+%header{ role: 'banner', class: 'navbar-fixed-top navbar-default' }
   .container
-    .navbar-default
-      %button.navbar-toggle{'data-target' => '#bs-example-navbar-collapse-1', 'data-toggle' => 'collapse', :type => 'button'}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
+    -#.navbar-default
+    %button.navbar-toggle{'data-target' => '#bs-example-navbar-collapse-1', 'data-toggle' => 'collapse', :type => 'button'}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
     .row.centrable
       %nav.navbar
         %a.navbar-brand{ href: (admin_zone? ? admin_proposals_path : root_path) }

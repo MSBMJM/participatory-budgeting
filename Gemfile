@@ -17,7 +17,7 @@ gem 'translation', '1.9'
 gem 'rake', '12.0.0'
 gem 'bootstrap-datepicker-rails'
 gem 'turnout'
-gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
+# gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 
 
 group :development, :test do
