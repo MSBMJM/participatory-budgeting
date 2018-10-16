@@ -14,7 +14,7 @@
       %p
         = render 'partials/icons/location'
         %strong
-          = _('Division')
+          = _('Community')
       %select.form-control{ id: 'classifier-district', name: 'district' }
         %option{ value: @districts.map(&:id).join(',') }
           = _('All divisions')
@@ -26,7 +26,7 @@
       %p
         = render 'partials/icons/folder'
         %strong
-          = _('Area')
+          = _('Focus Area')
       - @areas.each do |area|
         .form-check
           %label.form-check-label

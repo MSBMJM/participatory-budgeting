@@ -415,3 +415,10 @@ header{
 select.form-control:not([size]):not([multiple]) {
   height: auto;
 }
+
+.btn-outline-primary {
+  color: #6bb83e;
+  background-image: none;
+  background-color: transparent;
+  border-color: #6bb83e;
+}

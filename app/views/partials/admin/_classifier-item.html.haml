@@ -25,7 +25,13 @@
       -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Votes') }
       -#  = _('Votes: %{votes}') % { votes: " " }
       %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
-        = _('%{type}') %  { type: classifier.type }#if classifier.active then {active: 'Active'} else {active: 'Inactive'} end
+        - if classifier.type == 'District'
+          = _('%{type}') %  {type: 'Community'}
+
+        - elsif classifier.type == 'Area'
+          = _('%{type}') %   {type: 'Focus Area'}
+        - else
+          = _('%{type}') %  { type: classifier.type } #if classifier.active then {active: 'Active'} else {active: 'Inactive'} end
       -#= render 'partials/proposal-classifiers-list', classifiers: classifier.classifiers
     .col-lg-12
       = render 'partials/admin/classifier-edit-btn', classifier: classifier
