@@ -132,7 +132,7 @@ class Voting::ProposalsController < ApplicationController
         current_voter.voted_campaigns << @campaign.id.to_s + ','
         current_voter.save
       end
-      flash.now[:notice] = _('Your vote has been registered successfully.')
+      flash.now[:notice] = _('Your vote has been recorded')
     else
       referer = request.referer || new_voter_path(referer: request.path)
       redirect_to referer, alert: _('You need to <strong>sign in</strong> in order to view your vote.')

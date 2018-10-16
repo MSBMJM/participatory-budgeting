@@ -11,7 +11,7 @@
             -#  %h5= _('Campaign')
             -#  = f.collection_select :campaign_id, Campaign.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
             .form-group
-              %h5= _('Idea')
+              %h5= raw _('<b>Idea</b>')
               = f.label _('Title')
               = f.text_field :title, class: 'form-control', required: true
               = f.label _('Description')
