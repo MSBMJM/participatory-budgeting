@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180914010903) do
+ActiveRecord::Schema.define(version: 20181016174828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,16 +98,17 @@ ActiveRecord::Schema.define(version: 20180914010903) do
   end
 
   create_table "suggestions", force: :cascade do |t|
-    t.string   "title",                                     null: false
-    t.text     "description",                               null: false
+    t.string   "title",                                                         null: false
+    t.text     "description",                                                   null: false
     t.decimal  "budget",           precision: 10, scale: 2
     t.text     "image_data"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
     t.integer  "campaign_id"
     t.text     "proposing_member"
     t.boolean  "approved"
     t.boolean  "reviewed"
+    t.string   "review_status",                             default: "waiting"
     t.index ["campaign_id"], name: "index_suggestions_on_campaign_id", using: :btree
   end
 

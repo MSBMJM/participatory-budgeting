@@ -54,14 +54,24 @@
               %h3= _('Name and Contact Information (Optional):')
               = f.text_field :proposing_member, class: 'form-control'
             - if admin_role?
-              .form-check
-                %label.form-check-label
-                  = f.check_box :approved, class: 'form-check-input'
-                  = _('Approve Suggestion to be viewed.')
-              .form-check
-                %label.form-check-label
-                  = f.check_box :reviewed, class: 'form-check-input'
-                  = _('Mark suggestion as reviewed.')
+              -#.form-check
+              -#  %label.form-check-label
+              -#    = f.check_box :approved, class: 'form-check-input'
+              -#    = _('Approve Suggestion to be viewed.')
+              -#.form-check
+              -#  %label.form-check-label
+              -#    = f.check_box :reviewed, class: 'form-check-input'
+              -#    = _('Mark suggestion as reviewed.')
+              %p
+                = raw _('<b>Review Status</b> <br/>')
+                = f.radio_button :review_status, 'waiting'
+                = f.label :review_status, 'Waiting', value: 'waiting'
+                = raw _('<br/>')
+                = f.radio_button :review_status, 'approved'
+                = f.label :review_status, 'Approved', value: 'approved'
+                = raw _('<br/>')
+                = f.radio_button :review_status, 'rejected'
+                = f.label :review_status, 'Rejected', value: 'rejected'
 
             = f.submit _('Save'), class: 'btn btn-primary'
 
