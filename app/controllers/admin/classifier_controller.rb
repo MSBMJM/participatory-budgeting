@@ -46,6 +46,7 @@ class Admin::ClassifierController < AdminController
   end
 
   def classifier_params
+    Rails.logger.debug(params.inspect)
     if params[:classifier]
       p = params.require(:classifier).permit(:name, :type, :active, :budget, :start_date, :end_date)
     elsif params[:area]
