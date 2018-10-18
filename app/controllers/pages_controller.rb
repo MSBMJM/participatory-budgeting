@@ -86,4 +86,10 @@ class PagesController < ApplicationController
     # Rails.logger.debug("After Unless pulled +++++")
     # redirect_to root_path
   end
+
+  def about
+    Rails.logger.debug("=========================================+")
+    Rails.logger.debug("About")
+    Rails.logger.debug("=========================================+")
+  end
 end

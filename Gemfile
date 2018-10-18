@@ -17,6 +17,8 @@ gem 'translation', '1.9'
 gem 'rake', '12.0.0'
 gem 'bootstrap-datepicker-rails'
 gem 'turnout'
+gem "sweet-alert" , git: "https://github.com/frank184/sweet-alert-rails"
+gem "sweet-alert-confirm", git: "https://github.com/mois3x/sweet-alert-rails-confirm"
 # gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 
 

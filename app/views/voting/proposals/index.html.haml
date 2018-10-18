@@ -5,7 +5,7 @@
     .vote-progress
       .row
         .col-md-4.col-lg-3
-          %a#vote-finish.btn.btn-block.btn-primary.disabled{href: summarize_voting_proposals_path, role: 'button', data: {confirm: _('Submit votes ? Votes cannot be undone or changed after submitting.') }}= _('Finish')
+          %a#vote-finish.btn.btn-block.btn-primary.disabled{href: summarize_voting_proposals_path, role: 'button', data: {:'sweet-alert-confirm' => 'Submit votes?', :'confirm-button-text' => 'Submit', :'cancel-button-text' => 'cancel', :'confirm-button-color' => '#66CD00',  :'cancel-button-color' => '#66CD00',:'sweet-alert-type' => 'info', text: 'Votes cannot be undone or changed after submitting.'}}= _('Finish')
         .col-md-8.col-lg-9
           .vote-progress-title
             = _('Total amount')

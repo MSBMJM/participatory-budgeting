@@ -32,5 +32,9 @@
         - else
           %a{ href: new_voter_path(redirect: request.path), title: _('Sign in / Register') }
             = _('Sign in / Register')
+        %span.separator
+          | 
+          %a{ href: about_path, title: _('About') }
+            = _('About')
 
 

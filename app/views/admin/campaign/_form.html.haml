@@ -1,7 +1,7 @@
 .voters-new.container
   .row
     .col-lg-8.offset-lg-2
-      %a.btn.btn-outline-primary.btn-sm.back-btn{ href: admin_campaign_index_path, title: _('Back'), data: {confirm: _('If you leave without saving, you will lose any changes you made.') } }
+      %a.btn.btn-outline-primary.btn-sm.back-btn{ href: admin_campaign_index_path, title: _('Back'), data: {:'sweet-alert-confirm' => 'Leave page without saving?', :'confirm-button-text' => 'Leave', :'cancel-button-text' => 'Stay', :'confirm-button-color' => '#ff522b',  :'cancel-button-color' => '#66CD00',:'sweet-alert-type' => 'info', text: 'If you leave without saving, you will lose any changes you made.'} }
         = render 'partials/icons/arrow-left'
         = _('Back')
       .card

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     match '/area', to: 'classifier#update', via: 'patch'
     match '/district', to: 'classifier#update', via: 'patch'
 
-
+      
         root 'proposals#index'
   end
 
@@ -73,6 +73,7 @@ Rails.application.routes.draw do
 
   get 'campaigns', to: 'pages#home'
   # root 'pages#home'
+  get '/about', to: 'pages#about'
 
 
   # root 'pages#constituency'
