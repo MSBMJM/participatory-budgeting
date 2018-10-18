@@ -9,15 +9,15 @@
           = form_for [:admin, @proposal], class: 'voters-new' do |f|
             .form-group
               %h5= _('Campaign')
-              = f.collection_select :campaign_id, Campaign.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
+              = f.collection_select :campaign_id, Campaign.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' , required: true}
             .form-group
               %h5= _('Proposal')
               = f.label _('Title')
-              = f.text_field :title, class: 'form-control'
+              = f.text_field :title, class: 'form-control', required: true
               = f.label _('Description')
-              = f.text_area :description, rows: 8, class: 'form-control'
+              = f.text_area :description, rows: 8, class: 'form-control', required: true
               = f.label _('Budget')
-              = f.text_field :budget, value: number_to_currency(@proposal.budget, precision: 2, format: "%n"), class: 'form-control'
+              = f.text_field :budget, value: number_to_currency(@proposal.budget, precision: 2, format: "%n"), class: 'form-control', required: true
               = f.label _('Image')
               - if @proposal.image.present?
                 .card-block
