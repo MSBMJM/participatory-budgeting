@@ -23,8 +23,7 @@
         = ('If you live or work in South East St. Andrew, you can take part in any or all of the following ways: ')
       %ul.body-copy
         %li
-          -#%a.body-copy-bold
-          = raw _('<a class="body-copy-bold" href="%{submit_idea}" Submit any ideas</a> you have for solving a problem you know exists in the constituency. Submitted ideas will be turned into project proposals') % {submit_idea: ''}
+          = raw _('<a class="body-copy-bold" href="%{submit_idea}"> Submit any ideas</a> you have for solving a problem you know exists in the constituency. Submitted ideas will be turned into project proposals') % {submit_idea: ''}
         %li
           = raw _('<a class="body-copy-bold" href="%{submit_vote}">Vote on what you think are the best project proposals.</a> The most popular proposals will be submitted to Parliament for approval.') % {submit_vote: ''}
         %li
