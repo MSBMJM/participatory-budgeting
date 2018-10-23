@@ -12,9 +12,9 @@
       .col-md-6
         %h1.headline-copy.serif.gold-text
           = "It's your constituency funds. Tell your MP how to spend it!"
-        .large-title-bar.green-bg
+        .title-bar-large.green-bg
         %p.large-copy.white-text
-          = 'If you live or work in any of the pilot communities in South East St. Andrew, you can submit ideas for your MP to spend Constituency Development Funds (CDF) on. You can also vote on these ideas, and monitor their progress when they become projects.'
+          = 'Do you have ideas for how South East St. Andrew could be improved? Submit them to your Member of Parliament! Help choose which ideas get funded, and follow the progress of the resulting projects.'
       .col-md-6
 .container-fluid
   .container.section-container
@@ -28,20 +28,31 @@
             %p.body-copy
               = 'Anyone who lives or works in any of the following communities in the constituency of South East St. Andrew:'
         .row.section-row
-          .col-xs-6
-            %ul.body-copy
-              %li 'McGregor Gardens'
-              %li 'Mountain Court'
-              %li 'Musgrave'
-              %li 'New Kingston'
-              %li 'Stadium Gardens'
-          .col-xs-6
-            %ul.body-copy
-              %li 'Swallowfield'
-              %li 'Trafalgar Park'
-              %li 'Vineyard Town'
-              %li 'Woodford Park'
-              %li 'Worthington'
+          .col-xs-4
+            %ul.body-copy{style: 'list-style: none; padding-left:0px'}
+              %li Lilford
+              %li Lower Vineyard Town
+              %li Hart Lane
+              %li Jacques Road
+              %li McGregor Gardens
+              %li Monaltrie
+          .col-xs-4
+            %ul.body-copy{style: 'list-style: none; padding-left:0px'}
+              %li Mountain View
+              %li Musgrave
+              %li Nannyville
+              %li New Kingston
+              %li Stadium Gardens
+              %li Seymour Lands
+          .col-xs-4
+            %ul.body-copy{style: 'list-style: none; padding-left:0px'}
+              %li Swallowfield
+              %li Trafalgar Park
+              %li Vineyard Town
+              %li Woodford Park
+              %li Worthington
+
+            %ul.body-copy{style: 'list-style: none; padding-left:0px'}
           .col-xs-12
       .col-md-6.col-lg-6
         .constituency-map
@@ -112,7 +123,7 @@
             -#= 'Closes: [DD MMM YYYY]'
             %br
             %br
-            = 'You get to choose which ideas get funded. Vote, and encourage others to vote on the project proposals. You can choose as many proposals as you want, as long as the total does not exceed the $1 million budget.'
+            = raw _('Do you have an idea that solves a problem you know exists in the constituency? Submit it! The constituency office will then create a short list of project proposals based on the community development ideas submitted. Are you a young person with an idea for using technology to solve a community problem? Submit it! You might qualify for a <a class="body-copy-bold" href="">Youth Innovation Grant</a>. Submit as many ideas as you want, especially ideas promoting Youth Employment, Community Peace Building and Crime Reduction, or Digital Skills/Literacy.  ')
           - if @campaign.pending?
             .btn-container
               %a.btn.btn-primary.btn-lg.btn-block.green-bg.green-border-dark.border-1px{href: suggestion_suggestions_path}
@@ -128,7 +139,7 @@
             = 'Closes: ' + @campaign.end_date.strftime("%a, %d %b %Y")
             %br
             %br
-            = 'You get to choose which ideas get funded. Vote, and encourage others to vote on the project proposals. You can choose as many proposals as you want, as long as the total does not exceed the $1 million budget.'
+            = raw _('Submitted ideas become project proposals. After ideas are submitted, you get to choose which proposals get funded. The most popular Community Development proposals will be considered for CDF funding approval. The 5 most popular Youth Innovation proposals will each be awarded a grant. Vote, and encourage others to vote too! You can choose as many proposals as you want, as long as your choices do not exceed a total of J$1,000,000.')
           - if @campaign.open?
             .btn-container
               %a.btn.btn-primary.btn-lg.btn-block.green-bg.green-border-dark.border-1px{href: voting_proposals_path}
@@ -144,7 +155,7 @@
             -#= 'Closes: [DD MMM YYYY]'
             %br
             %br
-              ='Once phases 1 and 2 are complete you can monitor the progress of the top proposals that are chosen to become projects!'
+              = raw _('After the most popular Community Development proposals are selected, they will be prepared and sent to Parliament for approval. Once a proposed project is approved, you can then monitor its progress during implementation.')
           - if @campaign.closed?
             .btn-container
               %a.btn.btn-primary.btn-lg.btn-block.green-bg.green-border-dark.border-1px{href: monitoring_campaign_proposals_path(@campaign)}

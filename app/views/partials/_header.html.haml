@@ -1,18 +1,65 @@
 %header{ role: 'banner', class: 'navbar-fixed-top navbar-default' }
   .container
     -#.navbar-default
-    %button.navbar-toggle{'data-target' => '#bs-example-navbar-collapse-1', 'data-toggle' => 'collapse', :type => 'button'}
-      %span.sr-only Toggle navigation
-      %span.icon-bar
-      %span.icon-bar
-      %span.icon-bar
-    .row.centrable
+    .navbar-header
+      %button.navbar-toggle{'data-target' => '#topFixedNavbar1', 'data-toggle' => 'collapse', :type => 'button'}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{ href: (admin_zone? ? admin_proposals_path : root_path) }
+        %h1
+          - if admin_zone?
+            -#%span{style: 'font-weight: 100; padding-left: 250px;'} Admin
+    .collapse.navbar-collapse#topFixedNavbar1
+      %ul.nav.navbar-nav
+        %li.active
+          %a{ href: about_path, title: _('About') }
+            = _('About')
+      -# %ul.nav.navbar-nav.navbar-right
+        %li
+      - if current_voter
+        %ul.nav.navbar-nav.navbar-right
+          %li.body-copy-bold{style: 'padding: 10px 15px;'}
+            = _('Welcome %{current_voter}') % { current_voter: current_voter }
+      - if current_voter
+        - if admin_role?
+          - if admin_zone?
+            %ul.nav.navbar-nav.navbar-right
+              %li.active
+                %a{ href: root_path, title: _('Process') }
+                  = _('Public View')
+          - else
+            %ul.nav.navbar-nav.navbar-right
+              %li.active
+                %a{ href: admin_proposals_path, title: _('Admin') }
+                  = _('Admin')
+        %ul.nav.navbar-nav.navbar-right
+          %li.active
+            %a{ href: signout_voters_path, title: _('Sign out') }
+              = _('Sign out')
+      - else
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a.body-copy-bold{ href: new_voter_path(redirect: request.path), title: _('Sign in / Register') }
+              = _('Sign in / Register')
+      -# %span.separator
+        |
+        %a{ href: about_path, title: _('About') }
+          = _('About')
+      -# %ul.nav.navbar-nav
+        %li.active
+          %a{ href: about_path, title: _('About') }
+            = _('About')
+
+
+    -# .row.centrable
       %nav.navbar
         %a.navbar-brand{ href: (admin_zone? ? admin_proposals_path : root_path) }
           %h1
             - if admin_zone?
               -#%span{style: 'font-weight: 100; padding-left: 250px;'} Admin
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+    -# #topFixedNavbar1.collapse.navbar-collapse
       .navbar-user
         - if current_voter
           = _('Welcome %{current_voter}') % { current_voter: current_voter }
