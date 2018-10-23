@@ -107,9 +107,15 @@ class Admin::ProposalsController < AdminController
   end
 
   def proposal_params
-    if @proposal.votes != 0
-      p = params.require(:proposal).permit(:completed)
-    else
+    if !@proposal.nil?
+      if @proposal.votes != 0
+        p = params.require(:proposal).permit(:completed)
+      else
+        p = params.require(:proposal).permit(:title, :description, :budget, :image, :completed, :campaign_id, :district_id, :area_id, tag_ids: [])
+        p[:budget] = p[:budget]&.gsub(',', '_')&.to_d if p[:budget]
+        p[:image] = nil if params[:delete_image]
+      end
+    else 
       p = params.require(:proposal).permit(:title, :description, :budget, :image, :completed, :campaign_id, :district_id, :area_id, tag_ids: [])
       p[:budget] = p[:budget]&.gsub(',', '_')&.to_d if p[:budget]
       p[:image] = nil if params[:delete_image]

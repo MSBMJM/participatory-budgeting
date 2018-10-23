@@ -12,5 +12,7 @@
 //= require proposals-filter
 //= require proposals-vote-manager
 //= require main
-// require bootstrap-datepicker
-// require bootstrap-datepicker/core
+//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require sweet-alert
+//= require sweet-alert-confirm

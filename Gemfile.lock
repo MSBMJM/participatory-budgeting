@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/frank184/sweet-alert-rails
+  revision: d72b35828a60f00a49cd0938017cea7b914d6ef8
+  specs:
+    sweet-alert (0.0.8)
+
+GIT
+  remote: https://github.com/mois3x/sweet-alert-rails-confirm
+  revision: b2f7e8ab8973fb75c1911ea4d39f588c12b5e909
+  specs:
+    sweet-alert-confirm (0.4.1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -150,9 +162,6 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    passenger (5.3.5)
-      rack
-      rake (>= 0.8.1)
     pg (0.20.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -269,7 +278,6 @@ DEPENDENCIES
   jquery-rails (= 4.3.1)
   listen (= 3.1.5)
   minitest (= 5.10.1)
-  passenger (>= 5.0.25)
   pg (= 0.20.0)
   pry-rails (= 0.3.6)
   puma (= 3.8.2)
@@ -280,6 +288,8 @@ DEPENDENCIES
   shrine (= 2.6.1)
   spring (= 2.0.1)
   spring-watcher-listen (= 2.0.1)
+  sweet-alert!
+  sweet-alert-confirm!
   translation (= 1.9)
   turnout
   tzinfo-data
