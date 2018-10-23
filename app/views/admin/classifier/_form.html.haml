@@ -10,7 +10,7 @@
             .form-group
               %h5= _('Type')
               -#= f.collection_select :active, Campaign.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
-              = f.select :type, [['Community', 'District'], ['Focus Area', 'Area'], ['Tag','Tag']], { include_blank: false }, class: 'form-control'
+              = f.select :type, [['Affected Community ', 'District'], ['Category', 'Area'], ['Focus Area','Tag']], { include_blank: false }, class: 'form-control'
             .form-group
               %h5= _('Classifier')
               = f.label _('Name')

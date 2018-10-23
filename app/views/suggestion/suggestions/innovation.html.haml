@@ -1,3 +1,5 @@
+= render 'partials/page-title', title: _('Submit your Youth Innovation Idea!')
+
 .voters-new.container
   .row
     .col-lg-8.offset-lg-2
@@ -12,10 +14,22 @@
             -#  %h5= _('Campaign')
             -#  = f.collection_select :campaign_id, Campaign.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
             .form-group
-              %h5= raw _('<b>Idea</b>')
+              %h5= raw _('<b>Submit your Youth Innovation Idea!</b>')
+              %p.body-copy
+                = _('If you’re a 16-30 year old living in South East St. Andrew, you can submit an idea for a Youth Innovation Grant. This grant would help you build a technology based solution for promoting Youth Employment or Peace Building and Crime Reduction.')
               = f.label _('Title')
               = f.text_field :title, class: 'form-control', required: true
               = f.label _('Description')
+              %ul
+                %li
+                  = raw _('<b>What is the problem affecting the community?</b>')
+                %li
+                  = raw _('<b>Who is affected by the problem?</b>')
+                %li
+                  = raw _('<b>Why does the problem happen?</b>')
+                %li
+                  = raw _('<b>How would you use technology or data to solve this problem?</b>')
+
               = f.text_area :description, rows: 8, class: 'form-control', required: true
               -#= f.label _('Budget')
               -#= f.text_field :budget, value: number_to_currency(@suggestion.budget, precision: 2, format: "%n"), class: 'form-control'
@@ -34,26 +48,39 @@
                     %strong
                       = _('Affected Community')
                   = f.collection_select :district_id, @districts, :id, :name, {}, { class: 'form-control', required: true }
-                .col-lg-4
-                  %p
-                    = render 'partials/icons/folder'
-                    %strong
-                      = _('Category')
-                  = f.collection_select :area_id, @areas, :id, :name,  {}, { class: 'form-control' }
-                .col-lg-4
+                -#.col-lg-4
+                -#  %p
+                -#    = render 'partials/icons/folder'
+                -#    %strong
+                -#      = _('Category')
+                -#  = f.collection_select :area_id, @areas, :id, :name,  {}, { class: 'form-control' }
+                .col-lg-8
                   %p
                     = render 'partials/icons/tag'
                     %strong
-                      = _('Focus Area')
-                    = f.collection_check_boxes :tag_ids, @tags, :id, :name do |b|
+                      = _('Focus Area (Required)')
+                    = f.collection_check_boxes :tag_ids, @tags, :id, :name, {}, {} do |b|
                       .form-check
                         %label.form-check-label
                           = b.check_box class: 'form-check-input'
                           = b.object.name
+                = f.hidden_field :area_id, value: @areas[0].id
+            .form-group
+              .row
+                .col-lg-10
+                  %p
+                    .form-check
+                      %label.form-check-label
+                        = f.check_box :reviewed, class: 'form-check-input', required: true
+                        = raw _('&nbsp;&nbsp;&nbsp;     I am between 16-30 years old.')
+                  %label.form-check-label
+                    = f.check_box :reviewed, class: 'form-check-input', required: true
+                    = raw _('&nbsp;&nbsp;&nbsp; I live in a participating South East St. Andrew community.')
+
             .form-group
               -#%h4= _('Monitoring')
-              %h3= _('Name and Contact Information (Optional):')
-              = f.text_field :proposing_member, class: 'form-control'
+              %h3= _('Name and Contact Information:')
+              = f.text_field :proposing_member, class: 'form-control', required: true
             - if admin_role?
               -#.form-check
               -#  %label.form-check-label

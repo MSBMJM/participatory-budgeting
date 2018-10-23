@@ -26,12 +26,13 @@
       -#  = _('Votes: %{votes}') % { votes: " " }
       %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
         - if classifier.type == 'District'
-          = _('%{type}') %  {type: 'Community'}
+          = _('%{type}') %  {type: 'Affected Community'}
 
         - elsif classifier.type == 'Area'
-          = _('%{type}') %   {type: 'Focus Area'}
-        - else
-          = _('%{type}') %  { type: classifier.type } #if classifier.active then {active: 'Active'} else {active: 'Inactive'} end
+          = _('%{type}') %   {type: 'Category'}
+        - elsif classifier.type == 'Tag'
+          -# = _('%{type}') %  { type: classifier.type }
+          = _('%{type}') %  { type: 'Focus Area'  } #if classifier.active then {active: 'Active'} else {active: 'Inactive'} end
       -#= render 'partials/proposal-classifiers-list', classifiers: classifier.classifiers
     .col-lg-12
       = render 'partials/admin/classifier-edit-btn', classifier: classifier
