@@ -90,5 +90,18 @@
                 = f.radio_button :review_status, 'rejected'
                 = f.label :review_status, 'Rejected', value: 'rejected'
 
-            = f.submit _('Save'), class: 'btn btn-primary'
+            = f.submit _('Save'), class: 'btn btn-primary', id: 'checkBtn'
+
+:javascript
+  $(document).ready(function () {
+      $('#checkBtn').click(function() {
+        checked = $("input[type=checkbox]:checked").length;
+
+        if(!checked) {
+          alert("You must check at least one checkbox.");
+          return false;
+        }
+
+      });
+  });
 
