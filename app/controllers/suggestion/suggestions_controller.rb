@@ -1,6 +1,6 @@
 class Suggestion::SuggestionsController < ApplicationController
   before_action :set_suggestion, only: [:show, :edit, :update, :destroy]
-  before_action :set_classifiers, only: [:new, :edit]
+  before_action :set_classifiers, only: [:new, :edit, :innovation, :community]
 
   def index
     # @proposals = Proposal.all.order(updated_at: :desc)
@@ -28,7 +28,7 @@ class Suggestion::SuggestionsController < ApplicationController
   def create
     @suggestion = Suggestion.new(suggestion_params)
     if @suggestion.save
-      redirect_to suggestion_suggestions_path, success: _('Suggestion was successfully submitted for review.')
+      redirect_to suggestion_suggestions_path, success: _('Suggestion was successfully submitted for review. Approved suggestions will be displayed after 1-2 days')
     else
       flash.now[:error] = @suggestion.errors.full_messages.to_sentence
       render :new
@@ -37,8 +37,8 @@ class Suggestion::SuggestionsController < ApplicationController
 
   def update
 
-    if @suggestion.update(suggestion_params)
-      redirect_to admin_suggestions_path, success: _('Suggestion was successfully updated.')
+    if @suggestion.update(suggestion_admin_params)
+      redirect_to admin_suggestions_path, success: _('Only Review Status changes will be successfully updated.')
     else
       flash.now[:error] = @suggestion.errors.full_messages.to_sentence
       render :edit
@@ -49,6 +49,17 @@ class Suggestion::SuggestionsController < ApplicationController
     @suggestion.destroy
     redirect_to admin_suggestions_path, success: _('Suggestion was successfully deleted.')
   end
+
+  def community
+    @suggestion = Suggestion.new
+    @areas = Area.where(name: 'Community Development')
+  end
+
+    def innovation
+      @suggestion = Suggestion.new
+      @tags = Tag.where(name: ['Youth Employment', 'Peace Building and Crime Reduction'])
+      @areas = Area.where(name: 'Youth Innovation')
+    end
 
   private
 
@@ -67,6 +78,11 @@ class Suggestion::SuggestionsController < ApplicationController
     p[:budget] = "0"
     p[:budget] = p[:budget]&.gsub(',', '_')&.to_d if p[:budget] #no need for budget in suggestion probably
     p[:image] = nil if params[:delete_image]
+    p
+  end
+
+  def suggestion_admin_params
+    p = params.require(:suggestion).permit(:review_status)
     p
   end
 end

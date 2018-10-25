@@ -147,7 +147,7 @@ ul.nav.navbar-nav>li.active>a, ul.nav.navbar-nav>li.active>a:focus, ul.nav.navba
 }
 
 .spacer-global {
-  padding-top: 72px!important;
+  padding-top: 90px!important;
 }
 
 .row:before, .row:after{
@@ -174,14 +174,15 @@ nav.navbar {
 .serif{font-family: adelle, serif;}
 .sanserif{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
 
-.headline-copy {font-size: 36px; font-weight: 700;}
-.title-copy {font-size: 26px; font-weight: 700;}
+.headline-copy {font-size: 36px; font-weight: 700; margin: 0px 0px 5px 0px;}
+.title-copy {font-size: 26px; font-weight: 700; margin: 0px 0px 5px 0px;}
 .large-copy {font-size: 20px; font-weight: 400;}
 .body-copy {font-size: 14px; font-weight: 400;}
+.body-copy-bold {font-size: 14px; font-weight: 700}
 .small-copy {font-size: 12px; font-weight: 400;}
 
-.large-title-bar {width: 80px; height: 10px; margin-bottom: 20px}
-.title-bar {width: 60px; height: 8px; margin-bottom: 0px}
+.title-bar-large {width: 80px; height: 10px; margin-bottom: 20px}
+.title-bar {width: 60px; height: 8px; margin-bottom: 10px}
 
 /** Colour **/
 .gold-text {color: #FDCE08}

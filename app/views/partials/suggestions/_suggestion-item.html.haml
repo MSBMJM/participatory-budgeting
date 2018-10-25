@@ -23,8 +23,11 @@
           %p.proposal-description
             = truncate(suggestion.description, length: 230, separator: ' ')
       -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Votes') }
+      - unless controller.action_name == 'show'
+        %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: suggestion_suggestion_path(suggestion.id), title: suggestion.title}
+          = _('More Info')
       -#  = _('Votes: %{votes}') % { votes: " " }
-      -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
+      -#%a.btn.btn-outline-primary.btn-sm.more-info-btmore n{ href: '', title: _('Status'), class: " " }
       -#  = _("Waiting For Review")
       = render 'partials/proposal-classifiers-list', classifiers: suggestion.classifiers
     -#.col-lg-12
