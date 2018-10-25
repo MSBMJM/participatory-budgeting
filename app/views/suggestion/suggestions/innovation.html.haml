@@ -17,8 +17,11 @@
               %h5= raw _('<b>Submit your Youth Innovation Idea!</b>')
               %p.body-copy
                 = _('If you’re a 16-30 year old living in South East St. Andrew, you can submit an idea for a Youth Innovation Grant. This grant would help you build a technology based solution for promoting Youth Employment or Peace Building and Crime Reduction.')
+              %br
+              %br
               = f.label _('Title')
               = f.text_field :title, class: 'form-control', required: true
+              %br
               = f.label _('Description')
               %ul
                 %li
@@ -33,6 +36,7 @@
               = f.text_area :description, rows: 8, class: 'form-control', required: true
               -#= f.label _('Budget')
               -#= f.text_field :budget, value: number_to_currency(@suggestion.budget, precision: 2, format: "%n"), class: 'form-control'
+              %br
               = f.label _('Image')
               - if @suggestion.image.present?
                 .card-block
