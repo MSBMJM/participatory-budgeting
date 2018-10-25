@@ -62,7 +62,7 @@
                     = f.collection_check_boxes :tag_ids, @tags, :id, :name, {}, {} do |b|
                       .form-check
                         %label.form-check-label
-                          = b.check_box class: 'form-check-input'
+                          = b.check_box class: 'form-check-input focus-area'
                           = b.object.name
                 = f.hidden_field :area_id, value: @areas[0].id
             .form-group
@@ -107,7 +107,8 @@
 :javascript
   $(document).ready(function () {
       $('#checkBtn').click(function() {
-        checked = $("input[type=checkbox]:checked").length;
+        //checked = $("input[type=checkbox]:checked").length;
+        checked = $(":checkbox[class='form-check-input focus-area']:checked").length;
 
         if(!checked) {
           alert("You must check at least one Focus Area.");
