@@ -27,11 +27,11 @@
         = ('If you live or work in South East St. Andrew, you can take part in any or all of the following ways: ')
       %ul.body-copy
         %li
-          = raw _('<a class="body-copy-bold" href="">Submit any ideas</a> you have for solving a problem you know exists in the constituency. Submitted ideas may be turned into project proposals (Community Development Ideas), or even qualify for a grant (Youth Innovation Ideas).<span id="how"></span>') % {submit_idea: ''}
+          = raw _('<a class="body-copy-bold" href="%{how}">Submit any ideas</a> you have for solving a problem you know exists in the constituency. Submitted ideas may be turned into project proposals (Community Development Ideas), or even qualify for a grant (Youth Innovation Ideas).') % {how: root_path(anchor: 'how')}
         %li
-          = raw _('<a class="body-copy-bold" href="">Vote on what you think are the best project proposals.</a> The most popular proposals will either be submitted to Parliament for approval or be awarded grant funding.') % {submit_vote: ''}
+          = raw _('<a class="body-copy-bold" href="%{how}">Vote on what you think are the best project proposals.</a> The most popular proposals will either be submitted to Parliament for approval or be awarded grant funding.') % {how: root_path(anchor: 'how')}
         %li
-          = raw _('<a class="body-copy-bold" href="">Monitor the progress of the chosen projects</a> from when they are submitted for approval through to their implementation and completion.') % {monitor: ''}
+          = raw _('<a class="body-copy-bold" href="%{how}">Monitor the progress of the chosen projects</a> from when they are submitted for approval through to their implementation and completion.') % {how: root_path(anchor: 'how')}
 
 .container.section-container
   .row
@@ -90,7 +90,7 @@
   .row
     .col-md-12
       %h1.title-copy
-        = _('Who is Behind This')
+        = raw _('Who is Behind This')
       .title-bar-large.green-bg
   .row
     .col-md-12
