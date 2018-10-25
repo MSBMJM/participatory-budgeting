@@ -4,14 +4,18 @@
     %meta{charset: "utf-8"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no"}
     %meta{"http-equiv": "x-ua-compatible", content: "ie=edge"}
-    %meta{:name => "description", :content => "Participatory budgeting"}
-    %meta{:name => "keywords", :content => "open budget participatory budgeting"}
-    %meta{:property => "og:title", :content => "OpenBudgets"}
-    %meta{:property => "og:description", :content => "Participatory budgeting"}
-    %title= _('OpenBudgets')
+    %meta{:name => "description", :content => "TellYourMP"}
+    %meta{:name => "keywords", :content => "open budget tell your mp"}
+    %meta{:property => "og:title", :content => "Tell Your MP - OpenBudgets"}
+    %meta{:property => "og:description", :content => "Help decide how constituency funds are spent"}
+    %meta{:property => "og:url", :content => "http://www.tellyourmp.com.jm/"}
+    %meta{:property => "og:image", :content => asset_path('favicon-hi-res')}
+    %meta{:property => "og:image:alt", :content => "Tell Your MP - OpenBudgets"}
+    %title= _('Tell Your MP - OpenBudgets')
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    = favicon_link_tag '/favicon.png'
     - if !Rails.env.production? and ENV['ANALYTICS_ID']
       -#- Rails.logger.debug('=====================')
       -#- Rails.logger.debug(ENV['ANALYTICS_ID'])
