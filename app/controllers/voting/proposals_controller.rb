@@ -4,7 +4,12 @@ class Voting::ProposalsController < ApplicationController
       # flash.now[:notice] = _('<strong>Verification pending</strong>, please see your inbox for further instructions.')
     end
     # @campaign_budget = Campaign.current.budget
-    @campaign = Campaign.find(session[:current_campaign_id])
+    # used to capture campaign in multi-constituency workflow
+    #@campaign = Campaign.find(session[:current_campaign_id])
+    @campaign = Campaign.current
+    Rails.logger.debug("=========== campaign title")
+    # Rails.logger.debug(@proposals)
+    Rails.logger.debug(@campaign.title)
 
     unless current_voter.nil?
       if current_voter.votes_submitted?(@campaign)
