@@ -96,4 +96,13 @@ class Suggestion < ApplicationRecord
     tree.call(nil, -1).flatten[1..-1]
   end
 
+    def get_last_comment
+      return nil if comments.empty?
+      Rails.logger.debug("FearonTheOne")
+      Rails.logger.debug(comments.last.voter_id)
+      Rails.logger.debug(comments.last.voter)
+      #Array(comments.last)
+      comments.order("created_at").last
+    end
+
 end

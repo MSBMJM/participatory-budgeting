@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181016174828) do
+ActiveRecord::Schema.define(version: 20181118232811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,14 +53,16 @@ ActiveRecord::Schema.define(version: 20181016174828) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text     "text",        null: false
+    t.text     "text",          null: false
     t.integer  "voter_id"
     t.integer  "comment_id"
     t.integer  "proposal_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "suggestion_id"
     t.index ["comment_id"], name: "index_comments_on_comment_id", using: :btree
     t.index ["proposal_id"], name: "index_comments_on_proposal_id", using: :btree
+    t.index ["suggestion_id"], name: "index_comments_on_suggestion_id", using: :btree
     t.index ["voter_id"], name: "index_comments_on_voter_id", using: :btree
   end
 
@@ -109,6 +111,8 @@ ActiveRecord::Schema.define(version: 20181016174828) do
     t.boolean  "approved"
     t.boolean  "reviewed"
     t.string   "review_status",                             default: "waiting"
+    t.text     "solution"
+    t.text     "contact"
     t.index ["campaign_id"], name: "index_suggestions_on_campaign_id", using: :btree
   end
 
@@ -139,6 +143,7 @@ ActiveRecord::Schema.define(version: 20181016174828) do
   add_foreign_key "classifiers_suggestions", "suggestions"
   add_foreign_key "comments", "comments"
   add_foreign_key "comments", "proposals"
+  add_foreign_key "comments", "suggestions"
   add_foreign_key "comments", "voters"
   add_foreign_key "proposals", "campaigns"
   add_foreign_key "proposals_voters", "proposals"

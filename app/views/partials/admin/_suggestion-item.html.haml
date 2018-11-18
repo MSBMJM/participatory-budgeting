@@ -21,7 +21,7 @@
             = suggestion.description
         - else
           %p.proposal-description
-            = truncate(suggestion.description, length: 230, separator: ' ')
+            = truncate((suggestion.description + " " + suggestion.solution.to_s), length: 230, separator: ' ')
       -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Votes') }
       -#  = _('Votes: %{votes}') % { votes: " " }
       -#- unless suggestion.reviewed
