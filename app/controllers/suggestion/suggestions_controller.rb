@@ -6,7 +6,7 @@ class Suggestion::SuggestionsController < ApplicationController
     # @proposals = Proposal.all.order(updated_at: :desc)
     # @suggestions = Suggestion.all.order(updated_at: :desc)
     # @suggestions = Suggestion.where(approved:true)
-    @suggestions = Suggestion.where(review_status:'approved')
+    @suggestions = Suggestion.where(review_status:'approved').order(updated_at: :desc)
     Rails.logger.debug("@suggestions.size")
     # Rails.logger.debug(@suggestions.size)
     # handle potential singular suggestion being returned

@@ -88,7 +88,7 @@ class Suggestion < ApplicationRecord
 
   def threaded_comments
     return [] if comments.empty?
-    threads = comments.group_by{ |c| c.parent&.id  }
+    threads = comments.order(updated_at: :desc).group_by{ |c| c.parent&.id  }
     threads.default = []
     tree = lambda do |comment, level|
       [ { value:comment, level: level }, threads[comment&.id].map{ |c| tree.call(c, level + 1) } ]

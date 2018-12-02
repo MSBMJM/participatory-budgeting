@@ -18,10 +18,14 @@
           = time_from comment
       .proposal-comment-text
         = comment.text
-      - unless controller.action_name == 'show'
+      -#- unless controller.action_name == 'show'
         %button.btn.btn-outline-primary.btn-sm.btn-reply{ type: 'button', data: { toggle: 'collapse', target: "#replyTo#{comment.id}" }, aria: { expanded: false, controls: "#replyTo#{comment.id}" } }
           = render 'partials/icons/reply'
           = _('Reply')
+      - unless controller.action_name == 'show'
+        %a.btn.btn-outline-primary.btn-sm.unvote-btn{href: suggestion_suggestion_comment_path(comment.id), title: _('Delete'), data: { method: :delete, confirm: _('Are you sure?') } }
+          -#= render 'partials/icons/reply'
+          = _('Delete')
       .proposal-comment-replay.collapse{ id: "replyTo#{comment.id}" }
         = form_for [:suggestion, suggestion, Comment.new] do |f|
           .form-group

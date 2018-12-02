@@ -40,8 +40,8 @@
             = comments_count_for suggestion
             %p
               -# = raw _('<a href=''>see all comments</a>')
-              %a{ href: suggestion_suggestion_path(suggestion.id), title: _('see earlier comments') }
-                = 'see earlier comments'
+              %a{ href: suggestion_suggestion_path(suggestion.id), title: _('see all comments') }
+                = 'see all comments'
         -#= form_for [:suggestion, suggestion, Comment.new] do |f|
           -#.form-group
             -#= f.text_area :text, class: 'form-control', placeholder: _('Leave a comment...')

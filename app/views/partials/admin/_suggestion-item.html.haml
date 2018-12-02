@@ -30,4 +30,19 @@
         = _('%{review_status}') % { review_status: suggestion.review_status }
       = render 'partials/proposal-classifiers-list', classifiers: suggestion.classifiers
     .col-lg-12
+      .proposal-comments
+        - unless suggestion.comments.count.zero? || controller.action_name == 'show'
+          %h4
+            = comments_count_for suggestion
+        - comment = suggestion.get_last_comment
+        - unless comment.nil? || controller.action_name == 'show'
+          .proposal-comment{ class: "comment-level-0" }
+            .proposal-comment-header
+              %span.proposal-comment-author
+                = author_of comment
+              %span.proposal-comment-date
+                = time_from comment
+            .proposal-comment-text
+              = comment.text
+          %br
       = render 'partials/admin/suggestion-edit-btn', suggestion: suggestion
