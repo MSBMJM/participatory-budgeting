@@ -57,7 +57,7 @@ Rails.application.configure do
   ENV['FACEBOOK_ID'] = "1894116214229849"
 
   # ActionMailer default URL options
-  config.action_mailer.default_url_options = { host: 'pb.caribbeanopeninstitute.org' } #{ host: 'pb.caribbeanopeninstitute.org', 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'www.tellyourmp.com.jm' } #{ host: 'pb.caribbeanopeninstitute.org', 'localhost:3000' }
 
   # ApplicationMailer.smtp_settings = {
   #     address:        'smtp.gmail.com',
