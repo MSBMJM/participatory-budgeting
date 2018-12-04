@@ -15,8 +15,10 @@
               %h5= raw _('<b>Idea</b>')
               = f.label _('Title')
               = f.text_field :title, class: 'form-control', required: true
-              = f.label _('Description')
+              = f.label _('Problem')
               = f.text_area :description, rows: 8, class: 'form-control', required: true
+              = f.label _('Solution')
+              = f.text_area :solution, rows: 8, class: 'form-control', required: true
               -#= f.label _('Budget')
               -#= f.text_field :budget, value: number_to_currency(@suggestion.budget, precision: 2, format: "%n"), class: 'form-control'
               = f.label _('Image')
@@ -52,8 +54,10 @@
                           = b.object.name
             .form-group
               -#%h4= _('Monitoring')
-              %h3= _('Name and Contact Information (Optional):')
+              %h3= _('Name')
               = f.text_field :proposing_member, class: 'form-control'
+              %h3= _('Contact Number or Email')
+              = f.text_field :contact, class: 'form-control'
             - if admin_role?
               -#.form-check
               -#  %label.form-check-label
@@ -75,4 +79,10 @@
                 = f.label :review_status, 'Rejected', value: 'rejected'
 
             = f.submit _('Save'), class: 'btn btn-primary'
+        .proposal.card-block.row
+          -#%h4
+            -#= 'Hello motot'
+          .col-lg-12
+            - if admin_role?
+              = render 'partials/suggestions/suggestion-comments', suggestion: @suggestion
 

@@ -53,9 +53,12 @@ Rails.application.routes.draw do
   end
 
   namespace 'suggestion' do
-    resources :suggestions
+    resources :suggestions do
+      resources :comments
+    end
     match '/community', to: 'suggestions#community', via: 'get'
     match '/innovation', to: 'suggestions#innovation', via: 'get'
+
 
     root 'suggestions#new'
   end

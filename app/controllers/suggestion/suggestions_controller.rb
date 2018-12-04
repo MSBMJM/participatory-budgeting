@@ -6,7 +6,7 @@ class Suggestion::SuggestionsController < ApplicationController
     # @proposals = Proposal.all.order(updated_at: :desc)
     # @suggestions = Suggestion.all.order(updated_at: :desc)
     # @suggestions = Suggestion.where(approved:true)
-    @suggestions = Suggestion.where(review_status:'approved')
+    @suggestions = Suggestion.where(review_status:'approved').order(updated_at: :desc)
     Rails.logger.debug("@suggestions.size")
     # Rails.logger.debug(@suggestions.size)
     # handle potential singular suggestion being returned
@@ -74,10 +74,11 @@ class Suggestion::SuggestionsController < ApplicationController
   end
 
   def suggestion_params
-    p = params.require(:suggestion).permit(:title, :description, :budget, :image, :proposing_member, :review_status, :campaign_id, :district_id, :area_id, tag_ids: [])
+    p = params.require(:suggestion).permit(:title, :description, :solution, :contact, :budget, :image, :proposing_member, :review_status, :campaign_id, :district_id, :area_id, tag_ids: [])
     p[:budget] = "0"
     p[:budget] = p[:budget]&.gsub(',', '_')&.to_d if p[:budget] #no need for budget in suggestion probably
     p[:image] = nil if params[:delete_image]
+    #p[:description] << $/ << $/ << p[:solution]
     p
   end
 

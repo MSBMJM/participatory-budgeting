@@ -18,10 +18,10 @@
       - unless suggestion.description.blank?
         - if controller.action_name == 'show'
           %p.proposal-description
-            = suggestion.description
+            = (suggestion.description + $/ + $/ + suggestion.solution.to_s)
         - else
           %p.proposal-description
-            = truncate(suggestion.description, length: 230, separator: ' ')
+            = truncate((suggestion.description + " " + suggestion.solution.to_s), length: 230, separator: ' ')
       -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Votes') }
       - unless controller.action_name == 'show'
         %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: suggestion_suggestion_path(suggestion.id), title: suggestion.title}
@@ -32,3 +32,54 @@
       = render 'partials/proposal-classifiers-list', classifiers: suggestion.classifiers
     -#.col-lg-12
     -#  = render 'partials/suggestions/suggestion-edit-btn', suggestion: suggestion
+  .proposal.card-block.row
+    .col-lg-12
+      .proposal-comments
+        - unless suggestion.comments.count.zero? || controller.action_name == 'show'
+          %h4
+            = comments_count_for suggestion
+            %p
+              -# = raw _('<a href=''>see all comments</a>')
+              %a{ href: suggestion_suggestion_path(suggestion.id), title: _('see all comments') }
+                = 'see all comments'
+        -#= form_for [:suggestion, suggestion, Comment.new] do |f|
+          -#.form-group
+            -#= f.text_area :text, class: 'form-control', placeholder: _('Leave a comment...')
+          -#.form-actions
+            -#= f.submit (current_voter.nil? ? 'Sign in to Comment': 'Comment'), class: 'btn btn-primary', disabled: current_voter.nil?, aria: { disabled: current_voter.nil? }
+
+        - comment = suggestion.get_last_comment
+        - unless comment.nil? || controller.action_name == 'show'
+          .proposal-comment{ class: "comment-level-0" }
+            .proposal-comment-header
+              %span.proposal-comment-author
+                = author_of comment
+              %span.proposal-comment-date
+                = time_from comment
+            .proposal-comment-text
+              = comment.text
+        %br
+        - unless controller.action_name == 'index'
+          = render 'partials/suggestions/suggestion-comments', suggestion: suggestion
+          -# suggestion.get_last_comment.each do |elem|
+            - comment = elem[:value]
+            - level = elem[:level]
+            -unless comment.nil?
+              .proposal-comment{ class: "comment-level-#{level.to_s}" }
+                .proposal-comment-header
+                  %span.proposal-comment-author
+                    = author_of comment
+                  %span.proposal-comment-date
+                    = time_from comment
+                .proposal-comment-text
+                  = comment.text
+                %button.btn.btn-outline-primary.btn-sm.btn-reply{ type: 'button', data: { toggle: 'collapse', target: "#replyTo#{comment.id}" }, aria: { expanded: false, controls: "#replyTo#{comment.id}" } }
+                  = render 'partials/icons/reply'
+                  = _('Reply')
+                .proposal-comment-replay.collapse{ id: "replyTo#{comment.id}" }
+                  = form_for [:suggestion, suggestion, Comment.new] do |f|
+                    .form-group
+                      = f.hidden_field :comment_id, value: comment.id
+                      = f.text_area :text, class: 'form-control', placeholder: _('Leave a comment...')
+                    .form-actions
+                      = f.submit (current_voter.nil? ? 'Sign in to Comment': 'Comment'), class: 'btn btn-primary', disabled: current_voter.nil?, aria: { disabled: current_voter.nil? }

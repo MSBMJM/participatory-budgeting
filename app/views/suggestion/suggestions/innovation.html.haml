@@ -30,10 +30,16 @@
                   = raw _('<b>Who is affected by the problem?</b>')
                 %li
                   = raw _('<b>Why does the problem happen?</b>')
-                %li
-                  = raw _('<b>How would you use technology or data to solve this problem?</b>')
 
               = f.text_area :description, rows: 8, class: 'form-control', required: true
+
+              %br
+              = f.label _('Solution')
+              %ul
+                %li
+                  = raw _('<b>How would you use technology or data to solve this problem?</b>')
+              = f.text_area :solution, rows: 8, class: 'form-control', required: true
+
               -#= f.label _('Budget')
               -#= f.text_field :budget, value: number_to_currency(@suggestion.budget, precision: 2, format: "%n"), class: 'form-control'
               %br
@@ -83,8 +89,13 @@
 
             .form-group
               -#%h4= _('Monitoring')
-              %h3= _('Name and Contact Information:')
+              %h2= _('Name and Contact Information:')
+              %br
+              -#= f.text_field :proposing_member, class: 'form-control', required: true
+              %h3=_('Name')
               = f.text_field :proposing_member, class: 'form-control', required: true
+              %h3= _('Contact Number or Email')
+              = f.text_field :contact, class: 'form-control', required: true
             - if admin_role?
               -#.form-check
               -#  %label.form-check-label

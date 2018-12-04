@@ -88,12 +88,21 @@ class Suggestion < ApplicationRecord
 
   def threaded_comments
     return [] if comments.empty?
-    threads = comments.group_by{ |c| c.parent&.id  }
+    threads = comments.order(updated_at: :desc).group_by{ |c| c.parent&.id  }
     threads.default = []
     tree = lambda do |comment, level|
       [ { value:comment, level: level }, threads[comment&.id].map{ |c| tree.call(c, level + 1) } ]
     end
     tree.call(nil, -1).flatten[1..-1]
   end
+
+    def get_last_comment
+      return nil if comments.empty?
+      Rails.logger.debug("FearonTheOne")
+      Rails.logger.debug(comments.last.voter_id)
+      Rails.logger.debug(comments.last.voter)
+      #Array(comments.last)
+      comments.order("created_at").last
+    end
 
 end
