@@ -1,0 +1,9 @@
+.row
+  .col-lg-9
+    %a.vote-btn.btn.btn-lg.btn-block{ href: edit_admin_campaign_path(campaign), title: _('Edit') }
+      %p.unvoted
+        = _('Edit')
+  .col-lg-3
+    %a.unvote-btn.btn.btn-lg.btn-block{ href: admin_campaign_path(campaign), title: _('Delete'), data: { method: :delete, confirm: _('Are you sure?') } }
+      %p.unvoted
+        = _('Delete')

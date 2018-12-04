@@ -1,0 +1,36 @@
+.voters-new.container
+  .row
+    .col-lg-8.offset-lg-2
+      %a.btn.btn-outline-primary.btn-sm.back-btn{ href: admin_constituency_index_path, title: _('Back'), data: {:'sweet-alert-confirm' => 'Leave page without saving?', :'confirm-button-text' => 'Leave', :'cancel-button-text' => 'Stay', :'confirm-button-color' => '#ff522b',  :'cancel-button-color' => '#66CD00',:'sweet-alert-type' => 'info', text: 'If you leave without saving, you will lose any changes you made.'} }
+        = render 'partials/icons/arrow-left'
+        = _('Back')
+      .card
+        .card-block
+          = form_for [:admin, @constituency], class: 'voters-new' do |f|
+            .form-group
+              %h5= _('Status')
+              -#= f.collection_select :active, constituency.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
+              = f.select :active, [['Active', true], ['Inactive', false]], { include_blank: false }, class: 'form-control'
+            .form-group
+              %h5= _('constituency')
+              = f.label _('Title')
+              = f.text_field :title, class: 'form-control'
+              = f.label _('Description')
+              = f.text_area :description, rows: 8, class: 'form-control'
+              -#= f.label _('Budget')
+              -#= f.text_field :budget, value: number_to_currency(@constituency.budget, precision: 2, format: "%n"), class: 'form-control'
+              -#= f.label _('Start Date')
+              -#= f.text_field :start_date, class: 'form-control'
+              -#-#data:{ provide:'datepicker' }
+              -#= f.label _('End Date')
+              -#= f.text_field :end_date, class: 'form-control'
+              -#= f.label _('Image')
+              -#- if @proposal.image.present?
+                .card-block
+                  = image_tag @proposal.image_url, class: 'proposal-image', style: 'width: 100%; height: auto;'
+                  = f.submit _('Delete image'), name: :delete_image, class: 'btn btn-secondary btn-sm'
+              -#= f.hidden_field :image, value: @proposal.cached_image_data
+              -#= f.file_field :image, class: 'form-control'
+
+            = f.submit _('Save'), class: 'btn btn-primary'
+

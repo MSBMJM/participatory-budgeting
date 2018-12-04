@@ -1,0 +1,38 @@
+.card
+  .card-block.row
+    .col-lg-12
+      .card-header.proposal-budget
+        -#%strong
+        -#  = number_to_currency("classifier.budget", unit: '', precision: 2, format: "%n %u")
+        -#$
+      - unless controller.action_name == 'show'
+        %a.proposal-title{ href: edit_admin_classifier_path(classifier), title: classifier.name }
+          %h3
+            = classifier.name
+      - else
+        .proposal-title
+          %h3
+            = classifier.name
+      -#- if suggestion.image.present?
+      -#  = image_tag suggestion.image_url, class: 'proposal-image'
+      -#- unless classifier.description.blank?
+      -#  - if controller.action_name == 'show'
+      -#    %p.proposal-description
+      -#      = classifier.description
+      -#  - else
+      -#    %p.proposal-description
+      -#      = truncate(classifier.description, length: 230, separator: ' ')
+      -#%a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Votes') }
+      -#  = _('Votes: %{votes}') % { votes: " " }
+      %a.btn.btn-outline-primary.btn-sm.more-info-btn{ href: '', title: _('Status'), class: " " }
+        - if classifier.type == 'District'
+          = _('%{type}') %  {type: 'Affected Community'}
+
+        - elsif classifier.type == 'Area'
+          = _('%{type}') %   {type: 'Category'}
+        - elsif classifier.type == 'Tag'
+          -# = _('%{type}') %  { type: classifier.type }
+          = _('%{type}') %  { type: 'Focus Area'  } #if classifier.active then {active: 'Active'} else {active: 'Inactive'} end
+      -#= render 'partials/proposal-classifiers-list', classifiers: classifier.classifiers
+    .col-lg-12
+      = render 'partials/admin/classifier-edit-btn', classifier: classifier

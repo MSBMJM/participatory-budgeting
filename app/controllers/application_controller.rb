@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   add_flash_types :success, :error
 
-  before_action :set_locale
+  before_action :set_locale, :set_cache_headers
 
   def current_voter
     @current_voter ||= Voter.find_by(id: session[:voter])
@@ -50,5 +50,14 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options = {})
     options.merge(locale: I18n.locale)
+  end
+
+  private
+
+  # force page to reload on back, to ensure all state changes are shown; specifically after submitting a vote
+  def set_cache_headers
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
 end

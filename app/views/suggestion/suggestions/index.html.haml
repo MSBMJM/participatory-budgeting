@@ -1,0 +1,43 @@
+= render 'partials/page-title', title: _('Suggested Ideas')
+
+.vote-header
+  .container
+    .row.stages-row
+      .col-md-6
+        .white-bg.stages-card
+          %h3.serif.title-copy
+            = raw _('<center> Submit your Community Development Idea! </center>')
+          %br
+          %p.body-copy
+            = 'Anyone living or working in South East St. Andrew can submit an idea for promoting Youth Employment, Peace Building and Crime Reduction, Digital Skills/Literacy, or any other community development solution.'
+          .btn-container
+            %a#new-proposal.btn.btn-primary.btn-lg.btn-block.green-border-dark.border-1px{href: suggestion_community_path, role: 'button'}
+              = 'SUBMIT NEW COMMUNITY DEVELOPMENT IDEA'
+
+      .col-md-6
+        .white-bg.stages-card
+          %h3.serif.title-copy
+            = raw _('<center> Submit your Youth Innovation Idea! </center>')
+          %br
+          %p.body-copy
+            = 'If you’re a 16-30 year old living in South East St. Andrew, you can submit an idea for a Youth Innovation Grant. This grant would help you build a technology based solution for promoting Youth Employment or Peace Building and Crime Reduction.'
+          .btn-container
+            %a#new-proposal.btn.btn-primary.btn-lg.btn-block.green-border-dark.border-1px{href: suggestion_innovation_path}
+              = 'SUBMIT NEW YOUTH INNOVATION IDEA'
+      .col-md-12
+        %br
+        %br
+        %h1.serif.title-copy
+          =raw _('<center> Need inspiration? Use the <a href="https://bit.ly/TellYourMPjm_IdeaKit">Idea Kit</a> to come up with your own suggestions </center>')
+        %br
+    -# %a#new-proposal.btn.btn-block.btn-primary{href: suggestion_innovation_path, role: 'button'}= _('Submit New Idea')
+
+
+.container
+  .proposals-cont
+    -#- @proposals.each do |proposal|
+    -#  .proposal{ id: 'proposal-'+proposal.id.to_s, data: { budget: proposal.budget } }
+    -#    = render 'partials/admin/proposal-item', proposal: proposal
+    - @suggestions.each do |suggestion|
+      .proposal{ id: 'proposal-'+suggestion.id.to_s, data: { budget: suggestion.budget } }
+        = render 'partials/suggestions/suggestion-item', suggestion: suggestion

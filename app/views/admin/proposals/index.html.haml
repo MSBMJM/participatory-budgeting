@@ -2,7 +2,13 @@
 
 .vote-header
   .container
+    %a#view-campaign.btn.btn-block.btn-primary{href: admin_campaign_index_path, role: 'button'}= _('Campaigns')
+    - if @current_voter.access_ids == "all"
+      %a#view-classifier.btn.btn-block.btn-primary{href: admin_classifier_index_path, role: 'button'}= _('Classifiers')
+      %a#view-constituency.btn.btn-block.btn-primary{href: admin_constituency_index_path, role: 'button'}= _('Constituencies')
     %a#new-proposal.btn.btn-block.btn-primary{href: new_admin_proposal_path, role: 'button'}= _('New proposal')
+    %a#view-suggestions.btn.btn-block.btn-primary{href: admin_suggestions_path, role: 'button'}= _('View Suggestions')
+
 
 .container
   .proposals-cont

@@ -1,0 +1,109 @@
+.container.section-container
+  .row
+    .col-md-12
+      %h1.headline-copy
+        = _('About This Pilot')
+      .title-bar-large.green-bg
+  .row
+    .col-md-12
+      %p.body-copy
+        = _('The Constituency Development Fund (CDF) is money the government sets aside to fund development projects in each constituency. Members of Parliament (MPs) are required to hold CDF consultation meetings in their constituencies to help decide which projects to implement, but meetings are not always an easy way for everyone to participate in decision-making.')
+      %p.body-copy
+        = _('TellYourMP is a pilot initiative seeking to make the CDF consultations—and public consultations in general—more accessible for everyone!')
+      %p.body-copy
+        = _('In addition to his normal consultation meetings, MP Julian Robinson and stakeholders have agreed to allocate a total of J$1,000,000* through a public vote. Over the next few months, community members, community organisations, and interested citizens will be partnering to create proposals to improve the communities in South East St. Andrew.')
+      %p.small-copy
+        = _('*J$1,000,000 = J$500,000 from CDF allocation (subject to Parliamentary approval) + J$500,000 from grant funding.')
+
+.container.section-container
+  .row
+    .col-md-12
+      %h1.title-copy
+        = _('How You Can Get Involved')
+      .title-bar-large.green-bg
+  .row
+    .col-md-12
+      %p.body-copy
+        = ('If you live or work in South East St. Andrew, you can take part in any or all of the following ways: ')
+      %ul.body-copy
+        %li
+          = raw _('<a class="body-copy-bold" href="%{how}">Submit any ideas</a> you have for solving a problem you know exists in the constituency. Submitted ideas may be turned into project proposals (Community Development Ideas), or even qualify for a grant (Youth Innovation Ideas).') % {how: root_path(anchor: 'how')}
+        %li
+          = raw _('<a class="body-copy-bold" href="%{how}">Vote on what you think are the best project proposals.</a> The most popular proposals will either be submitted to Parliament for approval or be awarded grant funding.') % {how: root_path(anchor: 'how')}
+        %li
+          = raw _('<a class="body-copy-bold" href="%{how}">Monitor the progress of the chosen projects</a> from when they are submitted for approval through to their implementation and completion.') % {how: root_path(anchor: 'how')}
+
+.container.section-container
+  .row
+    .col-md-12
+      %h2.title-copy
+        = _('How Community Development Ideas Will Be Used')
+      .title-bar-large.green-bg
+  .row
+    .col-md-12
+      %p.body-copy
+        = _('Ideas collected will be used to propose community development projects based on CDF guidelines. These projects will be put to a public vote, and the top projects will be submitted to the CDF Parliamentary Committee for approval and implementation. Any idea can be submitted, but priority will be given to ideas that:')
+      %ul.body-copy
+        %li
+          = _('Affect communities within the South East St. Andrew constituency.')
+        %li
+          = _('Promote Youth Employment, Community Peace Building and Crime Reduction, or Digital Skills/Literacy. ')
+        %li
+          = raw _('Explain how the constituency/community (not just one individual) will benefit.<span id="who"></span>')
+        -# %li
+          = _('Do not involve repairing roads, building physical infrastructure, or welfare.')
+      %p.body-copy
+        = _('Project ideas involving repairing roads, building physical infrastructure, or welfare do not qualify for the TellYourMP initiative at this time. Ideas that aren’t selected for the pilot may still be considered for future projects.')
+
+.container.section-container
+  .row
+    .col-md-12
+      %h2.title-copy
+        = _('How Youth Innovation Ideas Will Be Used')
+      .title-bar-large.green-bg
+  .row
+    .col-md-12
+      %p.body-copy
+        = _('If you are 16-30 years old, live in a participating South East St. Andrew community, and you want to build technology solutions for community problems, you may submit a Youth Innovation Idea. A Youth Innovation Idea must meet the following criteria:')
+      %ul.body-copy
+        %li Affect communities within the South East St. Andrew constituency.
+        %li Promote Youth Employment or Community Peace Building and Crime Reduction.
+        %li Explain how the constituency/community (not just one individual) will benefit.
+        %li Describe how technology (for example mobile phones, social media or data) will be used to solve a community problem.
+      %p.body-copy
+        = 'If your idea is shortlisted, you will be given a chance to turn it into a proposal for a public vote. The top 5 proposals will be awarded a Youth Innovation Grant.'
+      %br
+      %p.body-copy
+        = 'Each grant awardee will receive the following:'
+      %ul
+        %li An Android tablet.
+        %li A 12-week digital skills training course.
+        %li Seed funding of J$30,000.
+        %li A seat in the DIA Urban Lab for Youth Innovation, where they will be able to develop their innovation.
+
+  -# .row
+    .col-md-12
+      %p.body-copy
+        = raw _('If you live elsewhere we’d still like to hear from you. Please submit your questions and feedback at <a href="mailto:tellyourmp@slashroots.org"> tellyourmp@slashroots.org</a>.')
+
+.container.section-container
+  .row
+    .col-md-12
+      %h1.title-copy
+        = raw _('Who is Behind This')
+      .title-bar-large.green-bg
+  .row
+    .col-md-12
+      %p.body-copy
+        = raw _('The TellYourMP pilot initiative is brought to you by the <a class="body-copy-bold" href="https://www.julianjrobinson.com">constituency office of South East St. Andrew</a>, the <a class="body-copy-bold" href="http://caribbeanopeninstitute.org/">Caribbean Open Institute</a>, a regional coalition supporting open development approaches to inclusion, participation and innovation; and the <a class="body-copy-bold" href="https://www.slashroots.org/">SlashRoots Foundation</a>, a non-governmental organisation that seeks to improve how government interacts with citizens in this digital age.')
+
+.container.section-container
+  .row
+    .col-md-12
+      %h1.title-copy
+        = _('Contact Us')
+      .title-bar-large.green-bg
+  .row
+    .col-md-12
+      %p.body-copy
+        = raw _('Dear citizen, this project is for you. We want to hear from you, whether you live in South East St. Andrew or perhaps elsewhere in Jamaica and want to see this happen where you live! Please send any questions or feedback to <a href="mailto:tellyourmp@slashroots.org"> tellyourmp@slashroots.org</a>.')

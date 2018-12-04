@@ -3,7 +3,7 @@
     .proposal-budget
       %strong
         = number_to_currency(proposal.budget, unit: '', precision: 2, format: "%n %u")
-      €
+      $
     .btn.btn-outline-primary.btn-sm.votes-btn
       = n_('%{votes} vote', '%{votes} votes', proposal.votes) % { votes: proposal.votes }
     %div{ class: 'btn btn-outline-primary btn-sm status-btn status-'+proposal.status.to_s }

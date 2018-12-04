@@ -8,16 +8,16 @@
         = render 'partials/icons/euro'
         %strong
           = _('Budget')
-      %input#budget-range-slider{ data: { type: 'double', min: '0', max: @budget_max, from: '0', to: @budget_max, postfix: ' €', hide_min_max: 'true' } }
+      %input#budget-range-slider{ data: { id:  @campaign.id, type: 'double', min: '0', max: @budget_max, from: '0', to: @budget_max, postfix: ' $', hide_min_max: 'true' } }
     %hr
     .form-group
       %p
         = render 'partials/icons/location'
         %strong
-          = _('District')
+          = _('Community')
       %select.form-control{ id: 'classifier-district', name: 'district' }
         %option{ value: @districts.map(&:id).join(',') }
-          = _('All districts')
+          = _('All divisions')
         - @districts.each do |district|
           %option{ value: district.id }
             = district.name
@@ -26,7 +26,7 @@
       %p
         = render 'partials/icons/folder'
         %strong
-          = _('Area')
+          = _('Focus Area')
       - @areas.each do |area|
         .form-check
           %label.form-check-label

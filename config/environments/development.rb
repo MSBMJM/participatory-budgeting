@@ -27,7 +27,8 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
 
   config.action_mailer.perform_caching = false
 
@@ -52,6 +53,29 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  ENV['ANALYTICS_ID'] = "UA-117584525-1"
+  ENV['FACEBOOK_ID'] = "1894116214229849"
+
   # ActionMailer default URL options
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'www.tellyourmp.com.jm' } #{ host: 'pb.caribbeanopeninstitute.org', 'localhost:3000' }
+
+  # ApplicationMailer.smtp_settings = {
+  #     address:        'smtp.gmail.com',
+  #     port:           587, #465
+  #     authentication: :plain,
+  #     user_name:      'msbm.mobile@gmail.com',
+  #     password:       'M$bm_M0b1!3',
+  #     domain:         'gmail.com',
+  #     enable_starttls_auto: true #(ENV['MAILER_TLS'] == 'true')
+  # }
+
+  config.action_mailer.smtp_settings = {
+      address:        'smtp.gmail.com',
+      port:           587, #465
+      authentication: :plain,
+      user_name:      'msbm.mobile@gmail.com',
+      password:       'M$bm_M0b1!3',
+      domain:         'gmail.com',
+      enable_starttls_auto: true #(ENV['MAILER_TLS'] == 'true')
+  }
 end

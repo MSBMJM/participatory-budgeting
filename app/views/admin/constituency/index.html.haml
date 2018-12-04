@@ -1,0 +1,14 @@
+= render 'partials/page-title', title: _('Constituencies')
+
+.vote-header
+  .container
+    %a#new-proposal.btn.btn-block.btn-primary{href: new_admin_constituency_path, role: 'button'}= _('Create New Constituency')
+
+.container
+  .proposals-cont
+    -#- @proposals.each do |proposal|
+    -#  .proposal{ id: 'proposal-'+proposal.id.to_s, data: { budget: proposal.budget } }
+    -#    = render 'partials/admin/proposal-item', proposal: proposal
+    - @constituencies.each do |constituency|
+      .proposal{ id: 'proposal-'+constituency.id.to_s, data: { budget: "constituency.budget" } }
+        = render 'partials/admin/constituency-item', constituency: constituency

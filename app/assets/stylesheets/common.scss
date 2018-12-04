@@ -32,9 +32,9 @@ header{
 }
 
 .navbar-user{
-  position: absolute;
+  //position: absolute;
   top: 0.5rem;
-  left: 0;
+  //left: 0; --jam
   right: 0;
   text-align: center;
 }
@@ -50,17 +50,25 @@ header{
   }
 
   .navbar-user{
-    position: static;
-    margin-top: 1.75rem;
+    //position: static; --jam
+    position: absolute;
+    margin-top: 2rem;
+
   }
 }
+
+//@include media-breakpoint-up(xs) {
+//  .navbar-user{
+//      position: static;
+//  }
+//}
 
 .navbar {
   padding: 1rem;
 
   .navbar-brand{
     padding-top: 0;
-    margin: 2.25rem 0 0;
+    //margin: 2.25rem 0 0; -- jam
 
     h1{
       padding-top: 0;
@@ -89,18 +97,20 @@ header{
 // Main
 
 .main-container{
-  padding-bottom: 1rem;
+  //padding-bottom: 1rem;
 }
 
 // Footer
 
 .footer{
-  padding: 1.75rem 0 0.5rem;
+  //padding: 1.75rem 0 0.5rem;
   color: $gray-lightest;
-  background-color: mix( $gray, $gray-dark, 50% );
-  font-size: 0.875rem;
-  font-weight: 300;
-  text-align: center;
+  //background-color: mix( $gray, $gray-dark, 50% );
+  background-color:#282827;
+  min-height: 200px;
+  //font-size: 0.875rem;
+  //font-weight: 300;
+  //text-align: center;
 
   .credits{
     margin-bottom: 0.5rem;
@@ -353,4 +363,62 @@ header{
 }
 .irs-from:after, .irs-to:after, .irs-single:after {
   border-top-color: $brand-primary;
+}
+
+.footer-logo-row{
+  border-bottom: solid #ffffff 1px
+}
+.coi-logo {
+  display: block;
+  width: 80%;
+  position: relative;
+  margin: 40px auto;
+}
+.small-white-sanserif{
+  color: #ffffff;
+  font: normal;
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, 'sans-serif';
+  font-size: 14px;
+}
+@media only screen and (max-width: 768px) {
+  .small-white-sanserif{
+    font-size: 20px;
+  }
+}
+.civio-credit {
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin-top: 20px}
+.civio-logo {
+  display: block;
+  width: 80%;
+  position: relative;
+  margin:0 auto;}
+@media only screen and (max-width: 768px) {
+  .civio-credit {float: left;width: 40%; text-align: left; margin-left: 5%}
+  .civio-logo {float: right; width: 40%; margin-right: 5%}
+}
+.srfdn-logo {
+  display: block;
+  width: 80%;
+  margin: 50px auto;
+  vertical-align: bottom;
+}
+.frida-credit {
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
+.btn-outline-primary {
+  color: #6bb83e;
+  background-image: none;
+  background-color: transparent;
+  border-color: #6bb83e;
 }

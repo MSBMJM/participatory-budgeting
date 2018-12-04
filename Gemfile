@@ -15,6 +15,12 @@ gem 'date_validator', '0.9.0'
 gem 'shrine', '2.6.1'
 gem 'translation', '1.9'
 gem 'rake', '12.0.0'
+gem 'bootstrap-datepicker-rails'
+gem 'turnout'
+gem "sweet-alert" , git: "https://github.com/frank184/sweet-alert-rails"
+gem "sweet-alert-confirm", git: "https://github.com/mois3x/sweet-alert-rails-confirm"
+# gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
+
 
 group :development, :test do
   gem 'byebug', '9.0.6', platform: :mri
@@ -33,10 +39,16 @@ group :development do
   gem 'capistrano-rails', '1.2.3'
 end
 
+group :prdocution do
+  gem 'web-console', '3.5.0'
+
+end
+
 group :test do
   gem 'guard', '2.14.1'
   gem 'guard-minitest', '2.4.6'
   gem 'minitest', '5.10.1'
+  # gem 'web-console', '3.5.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

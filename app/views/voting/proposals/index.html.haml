@@ -1,18 +1,18 @@
-= render 'partials/page-title', title: _('Vote your favourite proposals')
+= render 'partials/page-title', title: _('Vote for your favourite proposals')
 
 .vote-header
   .container
     .vote-progress
       .row
         .col-md-4.col-lg-3
-          %a#vote-finish.btn.btn-block.btn-primary.disabled{href: summarize_voting_proposals_path, role: 'button'}= _('Finish')
+          %a#vote-finish.btn.btn-block.btn-primary.disabled{href: summarize_voting_proposals_path, role: 'button', data: {:'sweet-alert-confirm' => 'Submit votes?', :'confirm-button-text' => 'Submit', :'cancel-button-text' => 'cancel', :'confirm-button-color' => '#66CD00',  :'cancel-button-color' => '#66CD00',:'sweet-alert-type' => 'info', text: 'Votes cannot be undone or changed after submitting.'}}= _('Finish')
         .col-md-8.col-lg-9
           .vote-progress-title
             = _('Total amount')
           .progress.vote-progress-bar
             .progress-bar{ style: 'width: 0%', role: 'progressbar', aria: { valuenow: '0', valuemin: '0', valuemax: '100' } }
           .vote-progress-amount{ data: { max_amount: @campaign_budget } }
-            0 €
+            0 $
 
 .container
   .row

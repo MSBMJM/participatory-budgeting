@@ -1,0 +1,9 @@
+.row
+  .col-lg-9
+    %a.vote-btn.btn.btn-lg.btn-block{ href: constituency_campaign_path(constituency), title: _('View') }
+      %p.unvoted
+        = _('View')
+  -#.col-lg-3
+  -#  %a.unvote-btn.btn.btn-lg.btn-block{ href: suggestion_suggestions_path(constituency), title: _('Delete'), data: { method: :delete, confirm: _('Are you sure?') } }
+  -#    %p.unvoted
+  -#      = _('Delete')

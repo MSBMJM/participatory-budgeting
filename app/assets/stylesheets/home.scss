@@ -1,14 +1,16 @@
 // Home
 
 .home {
-
+  //BackGround Image and Text On Campaign Page
   .jumbotron{
     position: relative;
     color: white;
     padding: 8rem 0 6rem;
     margin: 0;
     border-radius: 0;
-    background: url(asset-path('img/home_img.jpg')) no-repeat center center white;
+    //background: url(asset-path('img/home_img.jpg')) no-repeat center center white;
+    //background: url(asset-path('img/kingston_skyline.jpg')) no-repeat center center white;
+    background: url(asset-path('img/pb_banner.png')) no-repeat center center white;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -112,4 +114,189 @@
       margin-top: 0;
     }
   }
+}
+
+.header {
+  background-color: #FDCE08;
+}
+
+.navbar-fixed-top {
+  background-color: #FDCE08;
+}
+
+.navbar-brand{
+  background-image: url(asset-path('img/logo.png'));
+  background-size: contain;
+  background-repeat: no-repeat;
+  /*		background-color: aqua;*/
+  width: 276px;
+  height: 72px;
+}
+ul.nav.navbar-nav>li.active>a, ul.nav.navbar-nav>li.active>a:focus, ul.nav.navbar-nav>li.active>a:hover {
+  background-color: transparent;
+}
+@media only screen and (min-width: 768px) {
+  ul.nav.navbar-nav>li>a {
+    padding-top: 0px!important;
+    padding-bottom: 0px!important;
+  }
+  ul.nav.navbar-nav {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+}
+
+.spacer-global {
+  padding-top: 72px!important;
+}
+
+.row:before, .row:after{
+  content: none;
+}
+
+nav.navbar {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+//.navbar-user {
+//  margin-top: 25px;
+//}
+//
+//.row:after{
+//  content: none;
+//}
+
+.navbar-toggle .icon-bar{ background-color: #fff;}
+
+
+/** Typography **/
+.serif{font-family: adelle, serif;}
+.sanserif{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+.headline-copy {font-size: 36px; font-weight: 700; margin: 0px 0px 5px 0px;}
+.title-copy {font-size: 26px; font-weight: 700; margin: 0px 0px 5px 0px;}
+.large-copy {font-size: 20px; font-weight: 400;}
+.body-copy {font-size: 14px; font-weight: 400;}
+.body-copy-bold {font-size: 14px; font-weight: 700}
+.small-copy {font-size: 12px; font-weight: 400;}
+
+.title-bar-large {width: 80px; height: 10px; margin-bottom: 20px}
+.title-bar {width: 60px; height: 8px; margin-bottom: 10px}
+
+/** Colour **/
+.gold-text {color: #FDCE08}
+.white-text {color: #ffffff}
+.green-text {color: #4CB048}
+.black-text {color: #000000}
+
+.gold-bg {background-color: #FDCE08}
+.white-bg {background-color: #ffffff}
+.green-bg {background-color: #4CB048}
+.green-bg:hover {background-color: #9DD192}
+.green-bg-light {background-color: #9DD192}
+.green-bg-dark {background-color: #2F833F}
+.image-bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.gold-border {border-color: #FDCE08}
+.white-border {border-color: #ffffff}
+.green-border {border-color: #4CB048}
+.green-border-light {border-color: #9DD192}
+.green-border-dark {border-color: #2F833F}
+.green-border-dark:hover {border-color: #4CB048}
+
+
+
+/** Borders **/
+.border-1px {border-width: 1px}
+.border-3px {border-width: 3px}
+.border-5px {border-width: 5px}
+.border-solid {border-style: solid}
+.border-dashed {border-style: dashed}
+.border-dotted {border-style: dotted}
+
+
+/** Homepage: Jumbotron **/
+.jumbotron-custom {
+  min-height: 500px;
+  background-color: #282827;
+  background-image: url(asset-path('img/town-hall-fade.jpg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 991px){
+  .jumbotron-custom {background-image: none;}
+}
+
+.jumbotron-custom > .container {margin-top: 40px}
+
+.row-height-300 {
+  height: 300px;
+}
+
+/** Buttons **/
+.btn-container {
+  margin: 20px 30px 0px 30px
+}
+
+/** Stages Cards **/
+.square-50 {
+  width: 50%; padding-top: 50%; margin: 0px auto
+}
+.suggestion {
+  background-image: url(asset-path('img/suggestion.png'));
+}
+.vote {
+  background-image: url(asset-path('img/vote.png'));
+}
+.monitor {
+  background-image: url(asset-path('img/monitor.png'));
+}
+.stages-container {margin-top:40px;}
+.stages-row {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  padding-top: 0px;
+  margin-top: 20px;
+}
+.stages-row > .col-md-4 {
+  margin-bottom: 40px
+}
+.stages-card {
+  height: 100%;
+  width: 100%;
+
+  padding-bottom: 30px;
+  padding-top: 10px;
+
+  border: 1px solid #ccd0d3;
+
+  &.active {
+    background: white;
+    border-color: #6bb83e;
+  }
+}
+.stages-card > p, .stages-card > h2 {
+  margin-left: 30px; margin-right: 30px
+}
+
+/** Global Styles **/
+.section-container {margin-top:40px; margin-bottom: 40px;}
+.section-row {margin-top: 20px;}
+
+//<div style='width: 100%; padding-top: 100%; background-image: url(images/map.jpg); background-repeat: no-repeat; background-size: cover;
+
+.constituency-map {
+  width: 100%;
+  padding-top: 100%;
+  background-image: url(asset_path('img/map.jpg'));
+  background-repeat: no-repeat;
+  background-size: cover;
 }

@@ -5,6 +5,7 @@ class App.ProposalsFilter
   budget_max:       0
   budget_from:      0
   budget_to:        0
+  campaign_id:      0
 
   isMonitoring:     false
 
@@ -22,6 +23,13 @@ class App.ProposalsFilter
     @budget_max  = $('.vote-progress .vote-progress-amount').data('max-amount')   # TODO: check if it's the right way
     @budget_from = $('#budget-range-slider').data('from')
     @budget_to   = $('#budget-range-slider').data('to')
+    @campaign_id = $('#budget-range-slider').data('id')
+#    @pip_id = $('#budget-range-slider').data('pip')
+
+#    console.log('Data',$('#budget-range-slider').data('id'))
+#    console.log('pip',$('#budget-range-slider').data('pip'))
+#    console.log('@campaign_id 1:',@campaign_id )
+#    console.log('@pip_id 1:',@pip_id )
 
     @$filterMenu         = $('.proposals-filter-menu')
   
@@ -30,11 +38,14 @@ class App.ProposalsFilter
     @$filterMenu.find('.card-header').click @onFilterMenuCollapse
     
     # Setup range slider with Ion RangeSlider & listen when update
+    #only values from slider is held in this data variable
     $('#budget-range-slider').ionRangeSlider
       onFinish: (data) =>
         @budget_from = data.from
         @budget_to = data.to
         @onFilterChange()
+
+#    console.log('@campaign_id 2:',@campaign_id )
 
 
   # Update Proposals filtering
@@ -50,11 +61,24 @@ class App.ProposalsFilter
     classifiers = $('#classifier-district').val()
     if classifiers.indexOf(',') == -1
       all_classifiers = false
+    present_classifiers = @$filterMenu.find('input.form-check-input').length
+#    console.log('Filter Len: ', present_classifiers)
+    checked_count = 0
     @$filterMenu.find('input.form-check-input').each () ->
+#      console.log('ID: ',$(this).val())
       if $(this).is(':checked')
         classifiers = classifiers+','+ $(this).val()
-      else
-        all_classifiers = false
+        checked_count += 1
+#      else
+#        all_classifiers = false
+    if present_classifiers isnt checked_count
+      all_classifiers = false
+#    console.log('check Count: ', checked_count)
+#    console.log('Classifiers',classifiers)
+#    console.log('All classifiers',all_classifiers)
+#    console.log('Campaign ID 3:',@campaign_id)
+##    console.log('pip_id ID 3:',@pip_id)
+#    console.log('@budget_from:',@budget_from)
 
     # Send ajax petition to proposals filter
     $.ajax(
@@ -63,6 +87,8 @@ class App.ProposalsFilter
         class: if all_classifiers then '' else classifiers  # if all classifiers are checked we don't send class params
         budget_min: @budget_from
         budget_max: @budget_to
+        id: @campaign_id
+
       type: 'GET'
     ).done (data) =>
       if data.proposals_ids

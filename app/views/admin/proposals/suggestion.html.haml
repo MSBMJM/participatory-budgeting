@@ -1,0 +1,14 @@
+= render 'partials/page-title', title: _('Suggested Ideas')
+
+.vote-header
+  .container
+    -#%a#new-proposal.btn.btn-block.btn-primary{href: new_suggestion_suggestion_path, role: 'button'}= _('Suggest  New proposal')
+
+.container
+  .proposals-cont
+    -#- @proposals.each do |proposal|
+    -#  .proposal{ id: 'proposal-'+proposal.id.to_s, data: { budget: proposal.budget } }
+    -#    = render 'partials/admin/proposal-item', proposal: proposal
+    - @suggestions.each do |suggestion|
+      .proposal{ id: 'proposal-'+suggestion.id.to_s, data: { budget: suggestion.budget } }
+        = render 'partials/admin/suggestion-item', suggestion: suggestion

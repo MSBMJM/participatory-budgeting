@@ -15,4 +15,5 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: openbudgets_production
+#  url: <%= ENV['DATABASE_URL'] %>

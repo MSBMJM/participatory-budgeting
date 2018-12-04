@@ -5,11 +5,42 @@ class VotersController < ApplicationController
   end
 
   def create
+    ActionController::Parameters.permit_all_parameters = true
+
+    params = ActionController::Parameters.new
+    params.permitted? # => true
+
+    # Rails.logger.debug("FearonTheOne")
+    Rails.logger.debug(params.permitted?)
+    Rails.logger.debug(params[:voter])
     email = voter_params[:email]
     secret = voter_secret_params[:secret_data].to_h
+    printf "logging Like a Logger\n"
+
+    # logger.info 'test'
     if RegisterVoter.call(email,secret)
       session[:verification_pending] = true
-      redirect_to current_redirect!, notice: _("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions.")
+      session[:user_to_verify] = email
+      # @user = session[:user_to_verify]
+      @voter = Voter.find_or_create_by(email: email)
+      session[:voter_url] = verify_voters_url(token: @voter.verification_token)
+
+      # Rails.logger.debug("========FearonTheOne=========")
+      Rails.logger.debug(session[:voter])
+
+      roles = Admin::Role.all.pluck(:email)
+      # Rails.logger.debug(roles.any?{ |role| email&.include?(role) })
+
+      #{Apollo} Used to allow non admin users to sign in without email link
+      # if roles.any?{ |role| email&.include?(role) }
+      #   redirect_to current_redirect!, notice: _("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
+      # else
+      #   redirect_to current_redirect!, notice: _('<strong>Verification pending</strong>, please click the following to login as user: ' + email + '   ' + "<a class='btn btn-primary btn-sml' href='" + session[:voter_url] + "'> Confirm login</a>")
+      # end
+
+      redirect_to current_redirect!, notice: _("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
+
+      # redirect_to current_redirect!, notice: _('<strong>Verification pending</strong>, please click the following to login as user: ' + email + '   ' + "<a class='btn btn-primary btn-sml' href='" + session[:voter_url] + "'> Confirm login</a>") #_("We've sent you a <strong>verification token</strong>, please see your inbox for further instructions." )
     else
       redirect_to new_voter_path, error: _('Something went wrong with the registration process. Please, <strong>try again</strong>.')
     end
@@ -43,15 +74,20 @@ class VotersController < ApplicationController
     @voter.verify!
     session.delete(:verification_pending)
     sign_in(@voter)
-    redirect_to current_redirect!, success: _('<strong>Successfully verified</strong>, you can now take part in the participatory budgeting process.')
+    if admin_role?
+      redirect_to admin_proposals_path, success: _('Login Successful, Welcome Back Admin.')
+    else
+      redirect_to current_redirect!, success: _('<strong>Successfully verified</strong>, you can now take part in the participatory budgeting process.')
+    end
   end
 
   def voter_params
     params.require(:voter).permit(:email)
   end
 
+
   def voter_secret_params
     return ActionController::Parameters.new({}) unless (params[:voter] && params[:voter][:secret_data])
-    params.require(:voter).permit(secret_data: params[:voter][:secret_data].try(:keys))
+    params.require(:voter).permit(:email, secret_data: params[:voter][:secret_data].try(:keys))
   end
 end

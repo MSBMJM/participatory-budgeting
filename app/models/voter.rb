@@ -2,6 +2,7 @@ class Voter < ApplicationRecord
   has_and_belongs_to_many :proposals
 
   validates :email, format: /@/
+  # validates :access_ids, presence: true
 
   def verify!
     self.verified = true
@@ -22,5 +23,13 @@ class Voter < ApplicationRecord
 
   def to_s
     name || email
+  end
+
+  def votes_submitted?(campaign)
+    # Rails.logger.debug('votes_submitted?')
+    # Rails.logger.debug(voted_campaigns)
+    campaigns_voted = voted_campaigns.split(",").map(&:to_i)
+    # Rails.logger.debug(campaigns_voted.size)
+    campaigns_voted.include? campaign.id
   end
 end

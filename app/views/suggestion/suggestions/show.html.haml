@@ -1,0 +1,6 @@
+.container
+  %a.btn.btn-outline-primary.btn-sm.back-btn{ href: suggestion_suggestions_path, title: _('Back') }
+    = render 'partials/icons/arrow-left'
+    = _('Back')
+  .proposal
+    = render 'partials/suggestions/suggestion-item', suggestion: @suggestion

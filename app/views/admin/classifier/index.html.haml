@@ -1,0 +1,14 @@
+= render 'partials/page-title', title: _('Classifiers')
+
+.vote-header
+  .container
+    %a#new-proposal.btn.btn-block.btn-primary{href: new_admin_classifier_path, role: 'button'}= _('Create New Classifier')
+
+.container
+  .proposals-cont
+    -#- @proposals.each do |proposal|
+    -#  .proposal{ id: 'proposal-'+proposal.id.to_s, data: { budget: proposal.budget } }
+    -#    = render 'partials/admin/proposal-item', proposal: proposal
+    - @classifiers.each do |classifier|
+      .proposal{ id: 'proposal-'+classifier.id.to_s, data: { budget: "classifier.budget" } }
+        = render 'partials/admin/classifier-item', classifier: classifier

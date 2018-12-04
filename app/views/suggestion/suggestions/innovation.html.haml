@@ -1,0 +1,135 @@
+= render 'partials/page-title', title: _('New Youth Innovation Idea')
+
+.voters-new.container
+  .row
+    .col-lg-8.offset-lg-2
+      / %a.btn.btn-outline-primary.btn-sm.back-btn{ href: (admin_role? ? admin_suggestions_path : suggestion_suggestions_path), title: _('Back'), data: {confirm: _('If you leave without saving, you will lose any changes you made.') } }
+      %a.btn.btn-outline-primary.btn-sm.back-btn{ href: (admin_role? ? admin_suggestions_path : suggestion_suggestions_path), title: _('Back'),  data: { :'sweet-alert-confirm' => 'Leave page without saving?', :'confirm-button-text' => 'Leave', :'cancel-button-text' => 'Stay', :'confirm-button-color' => '#ff522b',  :'cancel-button-color' => '#66CD00',:'sweet-alert-type' => 'info', text: 'If you leave without saving, you will lose any changes you made.' } }
+        = render 'partials/icons/arrow-left'
+        = _('Back')
+      .card
+        .card-block
+          = form_for [:suggestion, @suggestion], class: 'voters-new' do |f|
+            -#.form-group
+            -#  %h5= _('Campaign')
+            -#  = f.collection_select :campaign_id, Campaign.all, :id, :title, { include_blank: _('None') }, { class: 'form-control' }
+            .form-group
+              %h5= raw _('<b>Submit your Youth Innovation Idea!</b>')
+              %p.body-copy
+                = _('If you’re a 16-30 year old living in South East St. Andrew, you can submit an idea for a Youth Innovation Grant. This grant would help you build a technology based solution for promoting Youth Employment or Peace Building and Crime Reduction.')
+              %br
+              %br
+              = f.label _('Title')
+              = f.text_field :title, class: 'form-control', required: true
+              %br
+              = f.label _('Description')
+              %ul
+                %li
+                  = raw _('<b>What is the problem affecting the community?</b>')
+                %li
+                  = raw _('<b>Who is affected by the problem?</b>')
+                %li
+                  = raw _('<b>Why does the problem happen?</b>')
+
+              = f.text_area :description, rows: 8, class: 'form-control', required: true
+
+              %br
+              = f.label _('Solution')
+              %ul
+                %li
+                  = raw _('<b>How would you use technology or data to solve this problem?</b>')
+              = f.text_area :solution, rows: 8, class: 'form-control', required: true
+
+              -#= f.label _('Budget')
+              -#= f.text_field :budget, value: number_to_currency(@suggestion.budget, precision: 2, format: "%n"), class: 'form-control'
+              %br
+              = f.label _('Image')
+              - if @suggestion.image.present?
+                .card-block
+                  = image_tag @suggestion.image_url, class: 'proposal-image', style: 'width: 100%; height: auto;'
+                  = f.submit _('Delete image'), name: :delete_image, class: 'btn btn-secondary btn-sm'
+              = f.hidden_field :image, value: @suggestion.cached_image_data
+              = f.file_field :image, class: 'form-control'
+            .form-group
+              .row
+                .col-lg-4
+                  %p
+                    = render 'partials/icons/location'
+                    %strong
+                      = _('Affected Community')
+                  = f.collection_select :district_id, @districts, :id, :name, {}, { class: 'form-control', required: true }
+                -#.col-lg-4
+                -#  %p
+                -#    = render 'partials/icons/folder'
+                -#    %strong
+                -#      = _('Category')
+                -#  = f.collection_select :area_id, @areas, :id, :name,  {}, { class: 'form-control' }
+                .col-lg-8
+                  %p
+                    = render 'partials/icons/tag'
+                    %strong
+                      = _('Focus Area (Required)')
+                    = f.collection_check_boxes :tag_ids, @tags, :id, :name, {}, {} do |b|
+                      .form-check
+                        %label.form-check-label
+                          = b.check_box class: 'form-check-input focus-area'
+                          = b.object.name
+                = f.hidden_field :area_id, value: @areas[0].id
+            .form-group
+              .row
+                .col-lg-10
+                  %p
+                    .form-check
+                      %label.form-check-label
+                        = f.check_box :reviewed, class: 'form-check-input', required: true
+                        = raw _('&nbsp;&nbsp;&nbsp;     I am between 16-30 years old.')
+                  %label.form-check-label
+                    = f.check_box :reviewed, class: 'form-check-input', required: true
+                    = raw _('&nbsp;&nbsp;&nbsp; I live in a participating South East St. Andrew community.')
+
+            .form-group
+              -#%h4= _('Monitoring')
+              %h2= _('Name and Contact Information:')
+              %br
+              -#= f.text_field :proposing_member, class: 'form-control', required: true
+              %h3=_('Name')
+              = f.text_field :proposing_member, class: 'form-control', required: true
+              %h3= _('Contact Number or Email')
+              = f.text_field :contact, class: 'form-control', required: true
+            - if admin_role?
+              -#.form-check
+              -#  %label.form-check-label
+              -#    = f.check_box :approved, class: 'form-check-input'
+              -#    = _('Approve Suggestion to be viewed.')
+              -#.form-check
+              -#  %label.form-check-label
+              -#    = f.check_box :reviewed, class: 'form-check-input'
+              -#    = _('Mark suggestion as reviewed.')
+              %p
+                = raw _('<b>Review Status</b> <br/>')
+                = f.radio_button :review_status, 'waiting'
+                = f.label :review_status, 'Waiting', value: 'waiting'
+                = raw _('<br/>')
+                = f.radio_button :review_status, 'approved'
+                = f.label :review_status, 'Approved', value: 'approved'
+                = raw _('<br/>')
+                = f.radio_button :review_status, 'rejected'
+                = f.label :review_status, 'Rejected', value: 'rejected'
+
+            = f.submit _('Save'), class: 'btn btn-primary', id: 'checkBtn'
+
+
+:javascript
+  $(document).ready(function () {
+      $('#checkBtn').click(function() {
+        //checked = $("input[type=checkbox]:checked").length;
+        checked = $(":checkbox[class='form-check-input focus-area']:checked").length;
+
+        if(!checked) {
+          alert("You must check at least one Focus Area.");
+          return false;
+        }
+
+      });
+  });
+

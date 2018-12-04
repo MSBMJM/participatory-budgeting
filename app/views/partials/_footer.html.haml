@@ -1,14 +1,18 @@
-%footer.footer{ role: 'contentinfo' }
-  .container.fill
-    %p.credits
-      = raw _("<a class='logo-open-budgets' href='http://openbudgets.eu/' target='_blank' title='OpenBudgets.eu'><img src='%{logo_openbudgets}' alt='OpenBudgets.eu'/></a><a href='https://github.com/openbudgets/participatory-budgeting' target='_blank' title='Participatory Badgeting'>Participatory Budgeting Tool</a> is developed by <a class='logo-civio' href='http://civio.es/' target='_blank' title='Civio'><img src='%{logo_civio}' alt='Civio'/></a>") % { logo_openbudgets: asset_path('img/openbudgets-logo-white.png'), logo_civio: asset_path('img/civio-logo-white.png') }
-    %ul.nav.nav-inline
-      %li.nav-item
-        %a.nav-link.m-0.p-0{ href: terms_of_service_path() }
-          = _('Terms of service')
-      %li.nav-item
-        %a.nav-linkm-0.p-0{ href: privacy_policy_path() }
-          = _('Privacy policy')
+%footer.container-fluid.footer{ role: 'contentinfo' }
   .container
-    %p.funding-credit
-      = raw _("OpenBudgets.eu has received funding from the European Union's <a href='https://ec.europa.eu/programmes/horizon2020/' target='_blank', title='H2020 EU research and innovation programme'>H2020 EU research and innovation programme</a> under grant agreement <a href='http://cordis.europa.eu/project/rcn/194394_en.html' target='_blank'>No 645833</a>.")
+    .row.footer-logo-row
+      .col-xs-6.col-sm-3.col-md-3.col-lg-3
+        -#%p.credits
+        = raw _("<a href='http://caribbeanopeninstitute.org/' target='_blank' title='OpenBudgets.eu'><img class='coi-logo' src='%{logo_openbudgets}' alt='OpenBudgets.eu'/></a>") % { logo_openbudgets: asset_path('img/coi-logo.png') }
+      .col-xs-6.col-sm-3.col-md-3.col-lg-3
+        = raw _("<a href='https://www.slashroots.org/' target='_blank' title='OpenBudgets.eu'><img class='srfdn-logo' src='%{logo_slashroots}' alt='OpenBudgets.eu'/></a>") % { logo_slashroots: asset_path('img/srfdn_logo_white.png') }
+      .hidden-xs.col-sm-3.col-md-3.col-lg-3
+
+      .col-xs-12.col-sm-3.col-md-3.col-lg-3
+        %span.civio-credit.sanserif.small-copy.white-text
+          = 'Adapted from Participatory Budgeting Tool developed by:'
+        = raw _("<a href='http://civio.es/' target='_blank' title='Civio'><img class='civio-logo' src='%{logo_civio}' alt='Civio'/></a>") % {logo_civio: asset_path('img/civio-logo.png')}
+    .row
+      .col-lg-12
+        %span.frida-credit.sanserif.white-text.small-copy
+          = 'Open Data for Development (OD4D) initiative'

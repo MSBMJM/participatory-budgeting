@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/frank184/sweet-alert-rails
+  revision: d72b35828a60f00a49cd0938017cea7b914d6ef8
+  specs:
+    sweet-alert (0.0.8)
+
+GIT
+  remote: https://github.com/mois3x/sweet-alert-rails-confirm
+  revision: b2f7e8ab8973fb75c1911ea4d39f588c12b5e909
+  specs:
+    sweet-alert-confirm (0.4.1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -48,6 +60,8 @@ GEM
     bootstrap (4.0.0.alpha6)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
+    bootstrap-datepicker-rails (1.7.1.1)
+      railties (>= 3.0)
     builder (3.2.3)
     byebug (9.0.6)
     capistrano (3.8.1)
@@ -157,6 +171,8 @@ GEM
       pry (>= 0.10.4)
     puma (3.8.2)
     rack (2.0.3)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.2)
@@ -224,6 +240,11 @@ GEM
     tilt (2.0.7)
     translation (1.9)
       gettext (>= 3.2.2)
+    turnout (2.4.1)
+      i18n (~> 0.7)
+      rack (>= 1.3, < 3)
+      rack-accept (~> 0.4)
+      tilt (>= 1.4, < 3)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
@@ -242,6 +263,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (= 4.0.0.alpha6)
+  bootstrap-datepicker-rails
   byebug (= 9.0.6)
   capistrano (= 3.8.1)
   capistrano-npm (= 1.0.2)
@@ -266,7 +288,10 @@ DEPENDENCIES
   shrine (= 2.6.1)
   spring (= 2.0.1)
   spring-watcher-listen (= 2.0.1)
+  sweet-alert!
+  sweet-alert-confirm!
   translation (= 1.9)
+  turnout
   tzinfo-data
   uglifier (= 3.2.0)
   web-console (= 3.5.0)
@@ -275,4 +300,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.14.6
+   1.16.2
