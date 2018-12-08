@@ -39,7 +39,7 @@ group :development do
   gem 'capistrano-rails', '1.2.3'
 end
 
-group :prdocution do
+group :production do
   gem 'web-console', '3.5.0'
 
 end
