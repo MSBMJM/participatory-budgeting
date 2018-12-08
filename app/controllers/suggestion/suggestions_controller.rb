@@ -23,6 +23,7 @@ class Suggestion::SuggestionsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path, error: _('<strong>Admin role is necessary</strong> in order to access the admin area.') unless admin_role?
   end
 
   def create
